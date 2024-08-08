@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.006717805, g: 0.0021356812, b: 0.0032115914, a: 1}
+  m_IndirectSpecularColor: {r: 0.006716281, g: 0.0021337252, b: 0.0032145693, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -155,7 +155,7 @@ MonoBehaviour:
   _cubePrefab: {fileID: 6506524716152332944, guid: 8cf9f987cc1fec64ea6baf8ed1051844,
     type: 3}
   _audioPeer: {fileID: 1642806296}
-  _cubeScaleFactor: 40000
+  _cubeScaleFactor: 15000
 --- !u!4 &101076552
 Transform:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ MonoBehaviour:
   _cubePrefab: {fileID: 6506524716152332944, guid: 8cf9f987cc1fec64ea6baf8ed1051844,
     type: 3}
   _audioPeer: {fileID: 1642806296}
-  _cubeScaleFactor: 40000
+  _cubeScaleFactor: 15000
 --- !u!1 &194356570
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +883,7 @@ MonoBehaviour:
   _cubePrefab: {fileID: 6506524716152332944, guid: 8cf9f987cc1fec64ea6baf8ed1051844,
     type: 3}
   _audioPeer: {fileID: 1642806296}
-  _cubeScaleFactor: 40000
+  _cubeScaleFactor: 15000
 --- !u!4 &473756457
 Transform:
   m_ObjectHideFlags: 0
@@ -1563,7 +1563,7 @@ MonoBehaviour:
   _cubePrefab: {fileID: 6506524716152332944, guid: 8cf9f987cc1fec64ea6baf8ed1051844,
     type: 3}
   _audioPeer: {fileID: 1642806296}
-  _cubeScaleFactor: 40000
+  _cubeScaleFactor: 15000
 --- !u!4 &1504778257
 Transform:
   m_ObjectHideFlags: 0
@@ -1626,7 +1626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1638379951
 Transform:
   m_ObjectHideFlags: 0
@@ -1883,7 +1883,7 @@ MonoBehaviour:
   _cubePrefab: {fileID: 6506524716152332944, guid: 8cf9f987cc1fec64ea6baf8ed1051844,
     type: 3}
   _audioPeer: {fileID: 1642806296}
-  _cubeScaleFactor: 40000
+  _cubeScaleFactor: 15000
 --- !u!4 &1769291487
 Transform:
   m_ObjectHideFlags: 0
@@ -1931,7 +1931,7 @@ MonoBehaviour:
   _cubePrefab: {fileID: 6506524716152332944, guid: 8cf9f987cc1fec64ea6baf8ed1051844,
     type: 3}
   _audioPeer: {fileID: 1642806296}
-  _cubeScaleFactor: 40000
+  _cubeScaleFactor: 15000
 --- !u!4 &1775338304
 Transform:
   m_ObjectHideFlags: 0
@@ -1979,7 +1979,7 @@ MonoBehaviour:
   _cubePrefab: {fileID: 6506524716152332944, guid: 8cf9f987cc1fec64ea6baf8ed1051844,
     type: 3}
   _audioPeer: {fileID: 1642806296}
-  _cubeScaleFactor: 40000
+  _cubeScaleFactor: 15000
 --- !u!4 &1885364714
 Transform:
   m_ObjectHideFlags: 0
