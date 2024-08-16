@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.006717805, g: 0.0021356812, b: 0.0032115914, a: 1}
+  m_IndirectSpecularColor: {r: 0.006716281, g: 0.0021337252, b: 0.0032145693, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1973,7 +1973,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884803889}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -158.2, y: -114.1, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1995,8 +1995,8 @@ MonoBehaviour:
   _audioPeer: {fileID: 1642806296}
   stepLength: 15
   amplitudeAplicator: 20000
-  lineRenewDelay: 0.3
-  lineLiveDelay: 20
+  lineRenewDelay: 0.05
+  lineLiveDelay: 100
 --- !u!1 &1885364712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2209,7 +2209,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9f5f2cc28e55daf4397309c26e1fe185, type: 2}
+  - {fileID: 2100000, guid: 749db8ef2d058bf4a81b297a5b1c365a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2247,7 +2247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039970315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3853.601, y: 50.264362, z: 118.89682}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
