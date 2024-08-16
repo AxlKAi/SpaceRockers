@@ -7,6 +7,8 @@ public class EqualizerLine : MonoBehaviour
     [SerializeField] private AudioPeer _audioPeer;
     [SerializeField] private float stepLength = 50;
     [SerializeField] private float amplitudeAplicator = 5000f;
+    [SerializeField] private float lineRenewDelay = .1f;
+    [SerializeField] private float lineLiveDelay = 20f;
 
     void Start()
     {
@@ -16,22 +18,23 @@ public class EqualizerLine : MonoBehaviour
     private IEnumerator Fade()
     {
         Vector3 startPoint, oldPoint;
-        startPoint = new Vector3(0, 0, 0);
-        oldPoint = new Vector3(0, 0, 0);
 
         while(true)
         {
+            startPoint = new Vector3(0, 0, 0);
+            oldPoint = new Vector3(0, 0, 0);
+
             foreach (float fadeLevel in _audioPeer.FrequiencyBand)
             {
                 startPoint.x = startPoint.x + stepLength;
                 startPoint.y = fadeLevel * amplitudeAplicator;
 
-                Debug.DrawLine(oldPoint, startPoint, Color.yellow, 1f);
+                Debug.DrawLine(transform.TransformPoint(oldPoint), transform.TransformPoint(startPoint), Color.yellow, lineLiveDelay);
 
                 oldPoint = startPoint;                
             }
 
-            yield return new WaitForSeconds(.7f);
+            yield return new WaitForSeconds(lineRenewDelay);
         }
     }
 }

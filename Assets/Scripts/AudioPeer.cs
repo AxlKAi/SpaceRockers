@@ -7,8 +7,8 @@ public class AudioPeer : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
 
-    public const int AudioCurveDetalization = 64;
-    public const int FrequiencyBandCount = 8;
+    public const int AudioCurveDetalization = 512;
+    public const int FrequiencyBandCount = 64;
 
     private float[] _samples = new float[AudioCurveDetalization];
     private float[] _frequiencyBand = new float[FrequiencyBandCount];
