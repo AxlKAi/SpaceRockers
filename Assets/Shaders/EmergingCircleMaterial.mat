@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SimpleTextureMaterial
+  m_Name: EmergingCircleMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 46bbfdd2cab981b4a9a4fb1498763632,
     type: 3}
   m_ValidKeywords: []
@@ -114,7 +114,7 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _Transparency: 0.4
-    - _TreshHold: 0.2
+    - _TreshHold: 0.23
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
