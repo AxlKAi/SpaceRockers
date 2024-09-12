@@ -21,7 +21,7 @@ public class AudioPeer : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _audioSource.time = 85; // TODO delete rewind and replay
+        //_audioSource.time = 85; // TODO delete rewind and replay
         _audioSource.Play();
     }
 

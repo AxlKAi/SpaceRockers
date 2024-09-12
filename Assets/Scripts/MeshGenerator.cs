@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class MeshGenerator : MonoBehaviour
 {
-    private int _xSize = 4;
-    private int _zSize = 2;
+    [SerializeField]
+    private GroundMesh _groundMesh;
+
+    private int _xSize = 500;
+    private int _zSize = 1;
     private float _xLength = 1f;
     private float _zLength = 1f;
     private float _zLastPoint = 0f;
-    private int pointsInSector = 6;
+    private int _pointsInSector = 6;
+
+    private int _groundMeshMaxLength = 20;
 
     private Mesh _mesh;
     private Vector3[] _verrticles;
@@ -23,32 +28,29 @@ public class MeshGenerator : MonoBehaviour
         {
             Debug.LogError("Can`t find AudioPeer component.");
         }
-        else
-        {
-            //TODO delete ???
-            // _xSize = _audioPeer.FrequiencyBandCountGetter;
-        }
-
-        _mesh = new Mesh();
-        GetComponent<MeshFilter>().mesh = _mesh;
 
         CreateMesh();
-        UpdateMesh();
 
         StartCoroutine(CreateNewLine());
     }
 
     private IEnumerator CreateNewLine()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 10000; i++)
         {
             AddNewLineToMesh();
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.05f);
         }
     }
 
     private void CreateMesh()
     {
+        var mesh = Instantiate(_groundMesh, Vector3.zero, Quaternion.identity);
+        mesh.transform.parent = transform;
+
+        _mesh = new Mesh();
+        mesh.GetComponent<MeshFilter>().mesh = _mesh;
+
         _verrticles = new Vector3[(_xSize + 1) * (_zSize + 1)];
 
         for (int i = 0, z = 0; z <= _zSize; z++)
@@ -65,7 +67,7 @@ public class MeshGenerator : MonoBehaviour
         int triangleMultiplier = 0;
         int vertexDisplacment = 0;
 
-        _triangles = new int[_xSize * _zSize * pointsInSector];
+        _triangles = new int[_xSize * _zSize * _pointsInSector];
 
         for (int z = 0; z < _zSize; z++)
         {
@@ -78,17 +80,29 @@ public class MeshGenerator : MonoBehaviour
                 _triangles[triangleMultiplier + 4] = vertexDisplacment + _xSize + 1;
                 _triangles[triangleMultiplier + 5] = vertexDisplacment + _xSize + 2;
 
-                _verrticles[vertexDisplacment].y = _audioPeer.FrequiencyBand[verrticleNumber] * 500; //TODO хардкод
+                // _verrticles[vertexDisplacment].y = _audioPeer.FrequiencyBand[verrticleNumber] * 500; //TODO хардкод
+                _verrticles[vertexDisplacment].y = _audioPeer.Samples[verrticleNumber] * 500;
 
                 vertexDisplacment++;
-                triangleMultiplier += pointsInSector;
+                triangleMultiplier += _pointsInSector;
             }
 
             vertexDisplacment++;
         }
+
+        UpdateMesh();
     }
+
     private void AddNewLineToMesh()
     {
+        if (_zSize > _groundMeshMaxLength)
+        {
+            _zSize = 1;
+            CreateMesh();
+            UpdateMesh();
+            return;
+        }
+
         int oldVerticelsArrayLength = _mesh.vertices.Length;
         int oldTriangleArrayLength = _mesh.triangles.Length;
 
@@ -102,7 +116,7 @@ public class MeshGenerator : MonoBehaviour
         }
 
         _verrticles = new Vector3[newVerticelsArrayLength];
-        _triangles = new int[_xSize * _zSize * pointsInSector];
+        _triangles = new int[_xSize * _zSize * _pointsInSector];
 
         System.Array.Copy(_mesh.vertices, _verrticles, oldVerticelsArrayLength);
         System.Array.Copy(_mesh.triangles, _triangles, oldTriangleArrayLength);
@@ -110,36 +124,38 @@ public class MeshGenerator : MonoBehaviour
         // добавляем одну строку в конец архива
         _zLastPoint += _zLength;
 
-        for (int i = 0; i < _xSize; i++)
-        {
-            _verrticles[oldVerticelsArrayLength + i] = new Vector3(i * _xLength, _audioPeer.FrequiencyBand[i] * 500, _zLastPoint); //TODO хардкод
-        }
-
+        _verrticles[oldVerticelsArrayLength] = new Vector3(0, 0, _zLastPoint); //TODO хардкод
         _verrticles[oldVerticelsArrayLength + _xSize] = new Vector3(_xSize * _xLength, 0, _zLastPoint); //TODO хардкод
 
+        for (int i = 1; i < _xSize; i++)
+        {
+            //_verrticles[oldVerticelsArrayLength + i] = new Vector3(i * _xLength, _audioPeer.FrequiencyBand[i] * 500, _zLastPoint); //TODO хардкод
+            _verrticles[oldVerticelsArrayLength + i] = new Vector3(i * _xLength, _audioPeer.Samples[i] * 500, _zLastPoint); //TODO хардкод
+        }
 
-        int index = oldTriangleArrayLength;
+        int trianlgesIndex = oldTriangleArrayLength;
+        int vertexIndex = oldVerticelsArrayLength - _xSize - 1;
 
         for (int x = 0; x < _xSize; x++)
         {
-            _triangles[index + 0] = oldVerticelsArrayLength + x;
-            _triangles[index + 1] = oldVerticelsArrayLength + x + _xSize + 1;
-            _triangles[index + 2] = oldVerticelsArrayLength + x + 1;
-            _triangles[index + 3] = oldVerticelsArrayLength + x + 1;
-            _triangles[index + 4] = oldVerticelsArrayLength + x + _xSize + 1;
-            _triangles[index + 5] = oldVerticelsArrayLength + x + _xSize + 2;
+            _triangles[trianlgesIndex + 0] = vertexIndex + x;
+            _triangles[trianlgesIndex + 1] = vertexIndex + x + _xSize + 1;
+            _triangles[trianlgesIndex + 2] = vertexIndex + x + 1;
+            _triangles[trianlgesIndex + 3] = vertexIndex + x + 1;
+            _triangles[trianlgesIndex + 4] = vertexIndex + x + _xSize + 1;
+            _triangles[trianlgesIndex + 5] = vertexIndex + x + _xSize + 2;
 
-            index += pointsInSector;
+            trianlgesIndex += _pointsInSector;
         }
 
         UpdateMesh();
-    } 
+    }
 
     private void UpdateMesh()
     {
         _mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
 
-        // _mesh.Clear();
+        _mesh.Clear();
 
         _mesh.vertices = _verrticles;
         _mesh.triangles = _triangles;
@@ -149,8 +165,10 @@ public class MeshGenerator : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        /*
         if (_verrticles != null)
             foreach (Vector3 point in _verrticles)
                 Gizmos.DrawSphere(point, .1f);
+        */
     }
 }
