@@ -7,12 +7,13 @@ public class MeshGenerator : MonoBehaviour
     [SerializeField]
     private GroundMesh _groundMesh;
 
-    private int _xSize = 500;
+    private int _xSize = 350;
     private int _zSize = 1;
-    private float _xLength = 1f;
-    private float _zLength = 1f;
+    private float _xLength = 10f;
+    private float _zLength = 3f;
     private float _zLastPoint = 0f;
     private int _pointsInSector = 6;
+    private float _amplitudeAmpfiller = 4500f;
 
     private int _groundMeshMaxLength = 20;
 
@@ -47,6 +48,7 @@ public class MeshGenerator : MonoBehaviour
     {
         var mesh = Instantiate(_groundMesh, Vector3.zero, Quaternion.identity);
         mesh.transform.parent = transform;
+        mesh.transform.position = Vector3.zero;
 
         _mesh = new Mesh();
         mesh.GetComponent<MeshFilter>().mesh = _mesh;
@@ -57,7 +59,7 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x <= _xSize; x++)
             {
-                _verrticles[i] = new Vector3(x * _xLength, 0, _zLastPoint + _zLength);
+                _verrticles[i] = new Vector3(x * _xLength, 0, _zLastPoint);
                 i++;
             }
 
@@ -80,8 +82,8 @@ public class MeshGenerator : MonoBehaviour
                 _triangles[triangleMultiplier + 4] = vertexDisplacment + _xSize + 1;
                 _triangles[triangleMultiplier + 5] = vertexDisplacment + _xSize + 2;
 
-                // _verrticles[vertexDisplacment].y = _audioPeer.FrequiencyBand[verrticleNumber] * 500; //TODO хардкод
-                _verrticles[vertexDisplacment].y = _audioPeer.Samples[verrticleNumber] * 500;
+                // _verrticles[vertexDisplacment].y = _audioPeer.FrequiencyBand[verrticleNumber] * _amplitudeAmpfiller; //TODO хардкод
+                _verrticles[vertexDisplacment].y = _audioPeer.Samples[verrticleNumber] * _amplitudeAmpfiller;
 
                 vertexDisplacment++;
                 triangleMultiplier += _pointsInSector;
@@ -98,6 +100,7 @@ public class MeshGenerator : MonoBehaviour
         if (_zSize > _groundMeshMaxLength)
         {
             _zSize = 1;
+            _zLastPoint -= _zLength;
             CreateMesh();
             UpdateMesh();
             return;
@@ -122,16 +125,17 @@ public class MeshGenerator : MonoBehaviour
         System.Array.Copy(_mesh.triangles, _triangles, oldTriangleArrayLength);
 
         // добавляем одну строку в конец архива
-        _zLastPoint += _zLength;
 
         _verrticles[oldVerticelsArrayLength] = new Vector3(0, 0, _zLastPoint); //TODO хардкод
         _verrticles[oldVerticelsArrayLength + _xSize] = new Vector3(_xSize * _xLength, 0, _zLastPoint); //TODO хардкод
 
         for (int i = 1; i < _xSize; i++)
         {
-            //_verrticles[oldVerticelsArrayLength + i] = new Vector3(i * _xLength, _audioPeer.FrequiencyBand[i] * 500, _zLastPoint); //TODO хардкод
-            _verrticles[oldVerticelsArrayLength + i] = new Vector3(i * _xLength, _audioPeer.Samples[i] * 500, _zLastPoint); //TODO хардкод
+            //_verrticles[oldVerticelsArrayLength + i] = new Vector3(i * _xLength, _audioPeer.FrequiencyBand[i] * _amplitudeAmpfiller, _zLastPoint); //TODO хардкод
+            _verrticles[oldVerticelsArrayLength + i] = new Vector3(i * _xLength, _audioPeer.Samples[i] * _amplitudeAmpfiller, _zLastPoint); //TODO хардкод
         }
+
+        _zLastPoint += _zLength;
 
         int trianlgesIndex = oldTriangleArrayLength;
         int vertexIndex = oldVerticelsArrayLength - _xSize - 1;
