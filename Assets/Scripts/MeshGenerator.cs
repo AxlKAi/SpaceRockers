@@ -7,10 +7,10 @@ public class MeshGenerator : MonoBehaviour
     [SerializeField]
     private GroundMesh _groundMesh;
 
-    private int _xSize = 350;
+    private int _xSize = 150;
     private int _zSize = 1;
     private float _xLength = 10f;
-    private float _zLength = 3f;
+    private float _zLength = 12f;
     private float _zLastPoint = 0f;
     private int _pointsInSector = 6;
     private float _amplitudeAmpfiller = 4500f;
