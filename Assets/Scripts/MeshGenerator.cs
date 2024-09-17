@@ -6,6 +6,8 @@ public class MeshGenerator : MonoBehaviour
 {
     [SerializeField]
     private GroundMesh _groundMesh;
+    [SerializeField]
+    private AudioPeer _audioPeer;
 
     private int _xSize = 150;
     private int _zSize = 1;
@@ -20,15 +22,11 @@ public class MeshGenerator : MonoBehaviour
     private Mesh _mesh;
     private Vector3[] _verrticles;
     private int[] _triangles;
-    private AudioPeer _audioPeer;
 
     private void Start()
     {
-        _audioPeer = GetComponent<AudioPeer>();
         if (_audioPeer == null)
-        {
             Debug.LogError("Can`t find AudioPeer component.");
-        }
 
         CreateMesh();
 

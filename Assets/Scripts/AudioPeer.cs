@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent (typeof (AudioSource))]
 public class AudioPeer : MonoBehaviour
 {
+    //TODO AudioPeer must be an singlTone 
+
     [SerializeField] private AudioSource _audioSource;
 
     public const int AudioCurveDetalization = 512;
@@ -18,7 +20,7 @@ public class AudioPeer : MonoBehaviour
 
     public int FrequiencyBandCountGetter { get { return FrequiencyBandCount; } }
 
-    void Start()
+    private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         //_audioSource.time = 85; // TODO delete rewind and replay
@@ -26,7 +28,7 @@ public class AudioPeer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         GetSpectrumAudioSource();
         CalculateFrequencyBand();
