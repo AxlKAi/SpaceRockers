@@ -7,12 +7,39 @@ public class AudioPolyline : MonoBehaviour
 {
     [SerializeField]
     private AudioPeer _audioPeer;
+    [SerializeField]
+    private float _amplitudeAmpfiler = 500f;
+    [SerializeField]
+    private float _lineLength = 7f;
+    [SerializeField]
+    private float _timeToLive = 4f;
+    [SerializeField]
+    private float _amplitudeDropLength = .3f;
 
     private LineRenderer _lineRenderer;
     private int _linesCount = 60;
+    private float _positionZ = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    //TODO amplitudeAmpfiler перенести в клас _audioPeer ??
+    public void SetLinePointsFromAudioSource()
+    {
+        for (int i = 0; i < _linesCount; i++)
+        {
+            _lineRenderer.SetPosition(i, new Vector3(i * _lineLength, _audioPeer.Samples[i]*_amplitudeAmpfiler, _positionZ));
+        }
+    }
+
+    public void SetAudioPeer(AudioPeer audioPeer)
+    {
+        _audioPeer = audioPeer;
+    }
+
+    public void SetPositionZ(float positionZ)
+    {
+        _positionZ = positionZ;
+    }
+
+    private void Start()
     {
         _lineRenderer = GetComponent<LineRenderer>();
 
@@ -23,20 +50,33 @@ public class AudioPolyline : MonoBehaviour
             Debug.LogError("Can`t find AudioPeer component.");
 
         _lineRenderer.positionCount = _linesCount;
-
-        DrawAudioline();
+        SetLinePointsFromAudioSource();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        
+        _timeToLive -= Time.fixedDeltaTime;
+
+        if (_timeToLive < 0)
+            Destroy(gameObject);
+
+        AmplitudeDrop();
     }
 
-    private void DrawAudioline(float[] Samples, float amplitudeAmpfiler, float length)
+    private void AmplitudeDrop()
     {
-        for (int i = 0; i < _linesCount; i++)
+        Vector3[] points = new Vector3[_lineRenderer.positionCount];
+
+        _lineRenderer.GetPositions(points);
+
+        for (int i=0; i<points.Length; i++)
         {
-            _lineRenderer.SetPosition(i, new Vector3(i * length, Samples[i]*amplitudeAmpfiler, 0));
+            if (points[i].y > 0)
+                points[i].y -= _amplitudeDropLength;
+
+            points[i].z -= 2f; 
         }
+
+        _lineRenderer.SetPositions(points);
     }
 }
