@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2642743024889075088}
   - component: {fileID: 2642743024889075089}
   m_Layer: 0
-  m_Name: AudioLine
+  m_Name: AudioLineStatic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4ee270b3844317e4095dd17845d37406, type: 2}
+  - {fileID: 2100000, guid: 35cf37c0eefc116478dc314283038e5b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioPeer: {fileID: 0}
   _amplitudeAmpfiler: 2500
-  _lineLength: 10
-  _timeToLive: 10
-  _amplitudeDropLength: 0.1
-  _moveSpeed: -3
+  _lineLength: 8
+  _timeToLive: 0.14
+  _amplitudeDropLength: 0
+  _moveSpeed: 0

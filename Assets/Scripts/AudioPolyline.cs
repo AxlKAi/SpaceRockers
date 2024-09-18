@@ -15,6 +15,8 @@ public class AudioPolyline : MonoBehaviour
     private float _timeToLive = 4f;
     [SerializeField]
     private float _amplitudeDropLength = .3f;
+    [SerializeField]
+    private float _moveSpeed = -2;
 
     private LineRenderer _lineRenderer;
     private int _linesCount = 60;
@@ -74,7 +76,7 @@ public class AudioPolyline : MonoBehaviour
             if (points[i].y > 0)
                 points[i].y -= _amplitudeDropLength;
 
-            points[i].z -= 2f; 
+            points[i].z += _moveSpeed; 
         }
 
         _lineRenderer.SetPositions(points);

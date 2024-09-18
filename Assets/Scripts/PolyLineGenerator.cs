@@ -12,8 +12,9 @@ public class PolyLineGenerator : MonoBehaviour
     private float _lineStep = 1f;
     [SerializeField]
     private float _newLineCreateInterval = .4f;
-
+    [SerializeField]
     private float _renderPositionZ = 0;
+
     private Vector3 _currentRenderPosion = Vector3.zero;
     private bool _isGeneratorActive = true;
 
