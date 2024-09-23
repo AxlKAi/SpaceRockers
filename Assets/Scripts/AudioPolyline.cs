@@ -6,24 +6,26 @@ using UnityEngine;
 public class AudioPolyline : MonoBehaviour
 {
     [SerializeField]
-    private AudioPeer _audioPeer;
+    protected AudioPeer _audioPeer;
     [SerializeField]
-    private float _amplitudeAmpfiler = 500f;
+    protected float _amplitudeAmpfiler = 500f;
     [SerializeField]
-    private float _lineLength = 7f;
+    protected float _lineLength = 7f;
     [SerializeField]
-    private float _timeToLive = 4f;
+    protected float _timeToLive = 4f;
     [SerializeField]
-    private float _amplitudeDropLength = .3f;
+    protected float _amplitudeDropLength = .3f;
     [SerializeField]
-    private float _moveSpeed = -2;
+    protected float _moveSpeed = -2;
+    [SerializeField]
+    protected bool _amplitudeDrop = false;
 
-    private LineRenderer _lineRenderer;
-    private int _linesCount = 60;
-    private float _positionZ = 0;
+    protected LineRenderer _lineRenderer;
+    protected int _linesCount = 60;
+    protected float _positionZ = 0;
 
     //TODO amplitudeAmpfiler перенести в клас _audioPeer ??
-    public void SetLinePointsFromAudioSource()
+    public virtual void SetLinePointsFromAudioSource()
     {
         for (int i = 0; i < _linesCount; i++)
         {
@@ -62,7 +64,8 @@ public class AudioPolyline : MonoBehaviour
         if (_timeToLive < 0)
             Destroy(gameObject);
 
-        AmplitudeDrop();
+        if(_amplitudeDrop == true)
+            AmplitudeDrop();
     }
 
     private void AmplitudeDrop()

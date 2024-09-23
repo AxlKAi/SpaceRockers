@@ -3,51 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
-public class AudioPolylineBezier : MonoBehaviour
+public class AudioPolylineBezier : AudioPolyline
 {
     [SerializeField]
-    private AudioPeer _audioPeer;
+    private float _smoothingLength = 2f;
     [SerializeField]
-    private float _amplitudeAmpfiler = 500f;
-    [SerializeField]
-    private float _lineLength = 7f;
-    [SerializeField]
-    private float _timeToLive = 4f;
-    [SerializeField]
-    private float _amplitudeDropLength = .3f;
-    [SerializeField]
-    private float _moveSpeed = -2;
+    private int _smoothingSections = 5;
 
-    private LineRenderer _lineRenderer;
-    private int _linesCount = 60;
-    private float _positionZ = 0;
+    private BezierCurve[] _curves;
 
     //TODO amplitudeAmpfiler перенести в клас _audioPeer ??
-    public void SetLinePointsFromAudioSource()
+    public override void SetLinePointsFromAudioSource()
     {
+        base.SetLinePointsFromAudioSource();
 
-
-        for (int i = 0; i < segmentsCount; i++)
+        for (int i = 0; i < _curves.Length; i++)
         {
-            float t = (float)i / (float)(segmentsCount - 1);
-            Vector3 point = CalculateBezierPoint(t, points[0], points[1], points[2], points[3]);
-            render.SetPosition(i, point);
+            Vector3 position = _lineRenderer.GetPosition(i);
+            Vector3 lastPosition = i == 0 ? _lineRenderer.GetPosition(0) : _lineRenderer.GetPosition(i - 1);
+            Vector3 nextPosition = _lineRenderer.GetPosition(i + 1);
+
+            Vector3 lastDirection = (position - lastPosition).normalized;
+            Vector3 nextDirection = (nextPosition - position).normalized;
+
+            Vector3 startTangent = (lastDirection + nextDirection) * _smoothingLength;
+            Vector3 endTangent = (nextDirection + lastDirection) * -1 * _smoothingLength;
+
+            _curves[i].Points[0] = position; // Start Position (P0)
+            _curves[i].Points[1] = position + startTangent; // Start Tangent (P1)
+            _curves[i].Points[2] = nextPosition + endTangent; // End Tangent (P2)
+            _curves[i].Points[3] = nextPosition; // End Position (P3)
         }
 
-        for (int i = 0; i < _linesCount; i++)
+        int index = 0;
+        _lineRenderer.positionCount = _curves.Length * _smoothingSections;
+
+        for (int i = 0; i < _curves.Length; i++)
         {
-            _lineRenderer.SetPosition(i, new Vector3(i * _lineLength, _audioPeer.Samples[i]*_amplitudeAmpfiler, _positionZ));
+            Vector3[] segments = _curves[i].GetSegments(_smoothingSections);
+
+            for (int j = 0; j < segments.Length; j++)
+            {
+                _lineRenderer.SetPosition(index, segments[j]);
+                index++;
+            }
         }
-    }
-
-    public void SetAudioPeer(AudioPeer audioPeer)
-    {
-        _audioPeer = audioPeer;
-    }
-
-    public void SetPositionZ(float positionZ)
-    {
-        _positionZ = positionZ;
     }
 
     private void Start()
@@ -61,53 +61,14 @@ public class AudioPolylineBezier : MonoBehaviour
             Debug.LogError("Can`t find AudioPeer component.");
 
         _lineRenderer.positionCount = _linesCount;
-        SetLinePointsFromAudioSource();
-    }
 
-    private void FixedUpdate()
-    {
-        _timeToLive -= Time.fixedDeltaTime;
+        _curves = new BezierCurve[_lineRenderer.positionCount - 1];
 
-        if (_timeToLive < 0)
-            Destroy(gameObject);
-
-        AmplitudeDrop();
-    }
-
-    private void AmplitudeDrop()
-    {
-        Vector3[] points = new Vector3[_lineRenderer.positionCount];
-
-        _lineRenderer.GetPositions(points);
-
-        for (int i=0; i<points.Length; i++)
+        for (int i = 0; i < _curves.Length; i++)
         {
-            if (points[i].y > 0)
-                points[i].y -= _amplitudeDropLength;
-
-            points[i].z += _moveSpeed; 
+            _curves[i] = new BezierCurve();
         }
 
-        _lineRenderer.SetPositions(points);
+        SetLinePointsFromAudioSource();
     }
-
-    private Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
-    {
-        float u = 1 - t;
-        float tt = t * t;
-        float uu = u * u;
-        float uuu = uu * u;
-        float ttt = tt * t;
-        Vector3 p = uuu * p0;
-        p += 3 * uu * t * p1;
-        p += 3 * u * tt * p2;
-        p += ttt * p3;
-        return p;
-    }
-
-    /* 
-     * 
-     * 
-     * 
-     */
 }
