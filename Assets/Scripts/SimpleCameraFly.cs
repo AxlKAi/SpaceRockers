@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// TODO remove this demo class
+
 public class SimpleCameraFly : MonoBehaviour
 {
 	public float acceleration = 50; // how fast you accelerate

@@ -29,7 +29,6 @@ public class PolyLineGenerator : MonoBehaviour
         StartCoroutine(CreateNewLine());
     }
 
-
     private IEnumerator CreateNewLine()
     {
         while (_isGeneratorActive)

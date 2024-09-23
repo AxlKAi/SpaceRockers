@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO этот клас не нужен I dont need this class, its only for editor (and folder EDITOR also)
+// remove it from project
 
 [RequireComponent(typeof(LineRenderer))]
 public class LineRendererSmoother : MonoBehaviour
