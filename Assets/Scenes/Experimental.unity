@@ -455,7 +455,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f9316e432e1f6e24d9a3dc5c6677bc9d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.03
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -570,7 +570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &616408987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,7 +831,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0aeaa44e07f01ce42bf531db079b4e5c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -43
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0aeaa44e07f01ce42bf531db079b4e5c,
         type: 3}
@@ -930,8 +930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e9665a937acbbc40bb87151ee7c0f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _altitude: 0
-  _maxForce: 0
+  _altitude: 10
+  _maxForce: 500
   _spherecastRadius: 2
   _maxDistance: 100
   _layerMask:
@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 1655416411}
   - component: {fileID: 1655416410}
   - component: {fileID: 1655416409}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1380,7 +1380,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371613050}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1500
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1400,7 +1400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024d29c2f4a088c468c58f8d1d04c23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _engine: {fileID: 0}
+  _engine: {fileID: 1217986352}
 --- !u!65 &1966208103
 BoxCollider:
   m_ObjectHideFlags: 0

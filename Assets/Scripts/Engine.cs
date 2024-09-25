@@ -28,7 +28,9 @@ public class Engine : MonoBehaviour
 
         if( Physics.SphereCast(_transform.position, _spherecastRadius, forward, out RaycastHit hitInfo, _maxDistance, _layerMask, QueryTriggerInteraction.Ignore))
         {
-
+            var force = -forward * _maxForce * Mathf.Clamp01(1 - hitInfo.distance / 10);
+            _rigidbody.AddForce( force, ForceMode.Impulse);
+            Debug.Log($"force = {force}");
         }
     }
 
