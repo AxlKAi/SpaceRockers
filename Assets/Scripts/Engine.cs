@@ -28,22 +28,16 @@ public class Engine : MonoBehaviour
 
         if( Physics.SphereCast(_transform.position, _spherecastRadius, forward, out RaycastHit hitInfo, _maxDistance, _layerMask, QueryTriggerInteraction.Ignore))
         {
-<<<<<<< HEAD
+
             float distance = hitInfo.distance;
             var calcDistance = Mathf.Clamp(distance, _altitude - 10f, _altitude +10f);   // Зажимаем высоту для расчета силы
 
             var forceFactor  = calcDistance.Remap(_altitude - 10f, _altitude + 10f, _maxForce, 0);  // и ремапим ее на _maxForce
-                                                                    // тут обратить внимание что ремап идет на перевернутые значения, и это прекрасно работате
-
+                                      // тут обратить внимание что ремап идет на перевернутые значения, и это прекрасно работает
+            
             var force = -forward * forceFactor; 
             _targetBody.AddForce( force, ForceMode.Force);
             Debug.Log($"force = {force}   distance = {calcDistance}   forceFactor = {forceFactor}");
-=======
-            var coeff = Mathf.Clamp01(1 - hitInfo.distance / _maxDistance);
-            var force = -forward * _maxForce * coeff;
-            _rigidbody.AddForce( force, ForceMode.Force);
-            Debug.Log($"force = {force} coefficient = {coeff}");
->>>>>>> 9e8664057b34569f2efd0be8437415c50380e71a
         }
     }
 
