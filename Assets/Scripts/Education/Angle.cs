@@ -13,6 +13,6 @@ public class Angle : MonoBehaviour
         if (_vectorOne == null || _vectorTwo == null)
             return;
 
-        gameObject.name = $"angle = {Vector3.SignedAngle(_vectorOne.Vector, _vectorTwo.Vector, Vector3.up):F2}";
+        gameObject.name = $"angle = {Vector3.Angle(_vectorOne.Vector, _vectorTwo.Vector, Vector3.up):F2}";
     }
 }
