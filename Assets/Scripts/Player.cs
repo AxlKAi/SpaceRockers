@@ -5,12 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private Engine _engine;
+    [SerializeField] private Engine _engine;
+    [SerializeField] private float _constantForcePower;
 
     private Transform _transform;
     private Rigidbody _rigidbody;
     private PlayerInput _playerInput;
+    private ConstantForce _constantForce;
 
     private void Awake()
     {
@@ -18,16 +19,14 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _playerInput = gameObject.AddComponent<PlayerInput>();
         _engine.Initialize(_rigidbody);
+        _constantForce = GetComponent<ConstantForce>();
     }
 
-    void Start()
+    private void FixedUpdate()
     {
-        
-    }
-
-
-    void Update()
-    {
-        
+        if (_playerInput != null)
+        {
+            _constantForce.force = Vector3.right * _playerInput.Controls.x * _constantForcePower;
+        }
     }
 }

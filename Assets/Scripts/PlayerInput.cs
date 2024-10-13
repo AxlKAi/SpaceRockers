@@ -22,9 +22,4 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
             CatchReleased?.Invoke();
     }
-
-    void Start()
-    {
-        
-    }
 }
