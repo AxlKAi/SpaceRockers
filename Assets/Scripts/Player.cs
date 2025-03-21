@@ -17,16 +17,17 @@ public class Player : MonoBehaviour
     {
         _transform = transform;
         _rigidbody = GetComponent<Rigidbody>();
-        _playerInput = gameObject.AddComponent<PlayerInput>();
+        _playerInput = GetComponent<PlayerInput>();
         _engine.Initialize(_rigidbody);
         _constantForce = GetComponent<ConstantForce>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (_playerInput != null)
         {
-            _constantForce.force = Vector3.right * _playerInput.Controls.x * _constantForcePower;
+           _constantForce.force = Vector3.right * _playerInput.Controls.x * _constantForcePower;
+            Debug.Log($"_constantForce.force = {_constantForce.force}");
         }
     }
 }

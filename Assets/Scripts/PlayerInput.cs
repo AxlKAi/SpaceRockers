@@ -21,5 +21,8 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
             CatchReleased?.Invoke();
+
+        Debug.Log($"{_moveInput}");
+
     }
 }

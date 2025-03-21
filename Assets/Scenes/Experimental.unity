@@ -1080,10 +1080,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e9665a937acbbc40bb87151ee7c0f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _altitude: 50
+  _altitude: 120
   _maxForce: 50000
   _spherecastRadius: 2
-  _maxDistance: 100
+  _maxDistance: 150
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1751,7 +1751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _engine: {fileID: 1217986352}
-  _constantForcePower: 100000
+  _constantForcePower: 10000
 --- !u!65 &1966208103
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1777,6 +1777,18 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
+--- !u!114 &1966208107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371613050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5eaf7d0601906a4fbf97f5570fa0871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2013140779
 GameObject:
   m_ObjectHideFlags: 0

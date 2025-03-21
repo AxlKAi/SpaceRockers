@@ -37,7 +37,7 @@ public class Engine : MonoBehaviour
             
             var force = -forward * forceFactor; 
             _targetBody.AddForce( force, ForceMode.Force);
-            Debug.Log($"force = {force}   distance = {calcDistance}   forceFactor = {forceFactor}");
+           // Debug.Log($"force = {force}   distance = {calcDistance}   forceFactor = {forceFactor}");
         }
     }
 
