@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Engine : MonoBehaviour
 {
-    [SerializeField] private float _altitude;
+    [SerializeField] private flowertat _altitude;
     [SerializeField] private float _maxForce;
     [SerializeField] private float _spherecastRadius;
     [SerializeField] private float _maxDistance;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(ConstantForce))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private Engine _engine;
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
     {
         _transform = transform;
         _rigidbody = GetComponent<Rigidbody>();
-        _playerInput = GetComponent<PlayerInput>();
+        _playerInput = gameObject.AddComponent<PlayerInput>();
         _engine.Initialize(_rigidbody);
         _constantForce = GetComponent<ConstantForce>();
     }
@@ -27,7 +28,6 @@ public class Player : MonoBehaviour
         if (_playerInput != null)
         {
            _constantForce.force = Vector3.right * _playerInput.Controls.x * _constantForcePower;
-            Debug.Log($"_constantForce.force = {_constantForce.force}");
         }
     }
 }
