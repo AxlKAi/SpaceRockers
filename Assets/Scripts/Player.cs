@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -7,7 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Engine _engine;
-    [SerializeField] private float _constantForcePower;
+    [SerializeField] private Camera _camera;
+
+    [SerializeField] private float _cameraDistance;
 
     private Transform _transform;
     private Rigidbody _rigidbody;
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         _transform = transform;
         _rigidbody = GetComponent<Rigidbody>();
         _playerInput = gameObject.AddComponent<PlayerInput>();
-        _engine.Initialize(_rigidbody);
+        _engine.Initialize(_rigidbody, _playerInput);
         _constantForce = GetComponent<ConstantForce>();
     }
 
@@ -27,7 +27,18 @@ public class Player : MonoBehaviour
     {
         if (_playerInput != null)
         {
-           _constantForce.force = Vector3.right * _playerInput.Controls.x * _constantForcePower;
+           _constantForce.force = _engine.Force;
+        }
+
+        if(_camera != null)
+        {
+            var cameraPosition = new Vector3(
+                _camera.transform.position.x,
+                _camera.transform.position.y,
+                _transform.position.z - _cameraDistance
+            );
+
+            _camera.transform.position = cameraPosition;
         }
     }
 }
