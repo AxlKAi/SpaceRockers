@@ -8,11 +8,14 @@ public class Player : MonoBehaviour
     [SerializeField] private Camera _camera;
 
     [SerializeField] private float _cameraDistance;
+    [SerializeField] private float _cameraSlideTime;
 
     private Transform _transform;
     private Rigidbody _rigidbody;
     private PlayerInput _playerInput;
     private ConstantForce _constantForce;
+
+    private Vector3 _cameraSlideVelocity = Vector3.zero;
 
     private void Awake()
     {
@@ -32,9 +35,11 @@ public class Player : MonoBehaviour
 
         if(_camera != null)
         {
+            var cameraSmoothDistance = Vector3.SmoothDamp(_camera.transform.position, _transform.position, ref _cameraSlideVelocity, _cameraSlideTime);
+
             var cameraPosition = new Vector3(
-                _camera.transform.position.x,
-                _camera.transform.position.y,
+                cameraSmoothDistance.x,
+                cameraSmoothDistance.y,
                 _transform.position.z - _cameraDistance
             );
 
