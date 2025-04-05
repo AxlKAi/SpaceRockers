@@ -31,7 +31,5 @@ public class Engine : MonoBehaviour
             _playerInput.Controls.x * _strafeForce,
             _playerInput.Controls.y * _strafeForce, 
             _forwardSpeed);            
-
-         Debug.Log($"force = {_force} ");
     }
 }
