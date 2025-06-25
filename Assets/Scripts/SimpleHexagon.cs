@@ -5,13 +5,13 @@ using UnityEngine;
 public class SimpleHexagon : MonoBehaviour
 {
     [SerializeField]
-    private float MaxGlowLevel = 2f;
+    private float MaxGlowLevel = 45f;
 
     [SerializeField]
-    private float MinGlowLevel = 0.5f;
+    private float MinGlowLevel = 1f;
 
     [SerializeField]
-    private float GlowLevelChangePeriod = 1f;
+    private float GlowLevelChangePeriod = .8f;
 
     [SerializeField]
     private GameObject _upperLinesObject;
