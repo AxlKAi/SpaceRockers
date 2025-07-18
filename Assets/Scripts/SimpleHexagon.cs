@@ -88,7 +88,6 @@ public class SimpleHexagon : MonoBehaviour
     private void SetNewGlowLevel()
     {
         GlowLevel = Random.Range(MinGlowLevel, MaxGlowLevel);
-        Debug.Log(GlowLevel);
         GlowLevelTimer = GlowLevelChangePeriod;
     }
 }
