@@ -232,7 +232,6 @@ GameObject:
   - component: {fileID: 58065038}
   - component: {fileID: 58065037}
   - component: {fileID: 58065036}
-  - component: {fileID: 58065039}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -318,20 +317,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58065034}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &58065039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58065034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd53037495f9fed47b35b3fb44a7f472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventActor: {fileID: 58065034}
-  eventID: Red
 --- !u!1 &784224371
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +694,9 @@ GameObject:
   - component: {fileID: 1709402047}
   - component: {fileID: 1709402046}
   - component: {fileID: 1709402045}
+  - component: {fileID: 1709402051}
+  - component: {fileID: 1709402050}
+  - component: {fileID: 1709402049}
   m_Layer: 0
   m_Name: Music Player
   m_TagString: Untagged
@@ -856,6 +844,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1709402049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709402044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd53037495f9fed47b35b3fb44a7f472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventActor: {fileID: 58065034}
+  eventID: White
+--- !u!114 &1709402050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709402044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd53037495f9fed47b35b3fb44a7f472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventActor: {fileID: 1265447300}
+  eventID: Yellow
+--- !u!114 &1709402051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709402044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd53037495f9fed47b35b3fb44a7f472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventActor: {fileID: 57085381}
+  eventID: Red
 --- !u!1 &1985235198
 GameObject:
   m_ObjectHideFlags: 0

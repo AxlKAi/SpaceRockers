@@ -12,7 +12,7 @@ public class MusicalEventTrigger : MonoBehaviour
     private Vector3 startScale;
     private float scaleKoefficient = 1.2f;
     private Vector3 currentScale;
-    private float fallofTime = .02f;
+    private float fallofTime = .5f;
     private float falloffTimertCont = 0;
 
     private void Awake()

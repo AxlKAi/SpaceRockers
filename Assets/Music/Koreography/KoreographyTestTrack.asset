@@ -16,88 +16,34 @@ MonoBehaviour:
   mEventList:
   - mStartSample: 5337
     mEndSample: 5337
-  - mStartSample: 24237
-    mEndSample: 24237
-  - mStartSample: 43137
-    mEndSample: 43137
-  - mStartSample: 52619
-    mEndSample: 52619
-  - mStartSample: 62037
-    mEndSample: 62037
-  - mStartSample: 62181
-    mEndSample: 62181
-  - mStartSample: 71521
-    mEndSample: 71521
-  - mStartSample: 80850
-    mEndSample: 80850
   - mStartSample: 80937
     mEndSample: 80937
-  - mStartSample: 99837
-    mEndSample: 99837
-  - mStartSample: 118737
-    mEndSample: 118737
-  - mStartSample: 128250
-    mEndSample: 128250
-  - mStartSample: 137637
-    mEndSample: 137637
-  - mStartSample: 137725
-    mEndSample: 137725
-  - mStartSample: 147098
-    mEndSample: 147098
   - mStartSample: 156537
     mEndSample: 156537
-  - mStartSample: 156598
-    mEndSample: 156598
-  - mStartSample: 166005
-    mEndSample: 166005
-  - mStartSample: 175437
-    mEndSample: 175437
-  - mStartSample: 175491
-    mEndSample: 175491
-  - mStartSample: 185024
-    mEndSample: 185024
+  - mStartSample: 232137
+    mEndSample: 232137
+  - mStartSample: 307737
+    mEndSample: 307737
+  - mStartSample: 383337
+    mEndSample: 383337
   - mStartSample: 458937
     mEndSample: 458937
-  - mStartSample: 477837
-    mEndSample: 477837
-  - mStartSample: 496737
-    mEndSample: 496737
-  - mStartSample: 506219
-    mEndSample: 506219
-  - mStartSample: 515637
-    mEndSample: 515637
-  - mStartSample: 515781
-    mEndSample: 515781
-  - mStartSample: 525121
-    mEndSample: 525121
-  - mStartSample: 534450
-    mEndSample: 534450
   - mStartSample: 534537
     mEndSample: 534537
-  - mStartSample: 553437
-    mEndSample: 553437
-  - mStartSample: 572337
-    mEndSample: 572337
-  - mStartSample: 581850
-    mEndSample: 581850
-  - mStartSample: 591237
-    mEndSample: 591237
-  - mStartSample: 591325
-    mEndSample: 591325
-  - mStartSample: 600698
-    mEndSample: 600698
   - mStartSample: 610137
     mEndSample: 610137
-  - mStartSample: 610198
-    mEndSample: 610198
-  - mStartSample: 619605
-    mEndSample: 619605
-  - mStartSample: 629037
-    mEndSample: 629037
-  - mStartSample: 629091
-    mEndSample: 629091
-  - mStartSample: 638624
-    mEndSample: 638624
+  - mStartSample: 685737
+    mEndSample: 685737
+  - mStartSample: 761337
+    mEndSample: 761337
+  - mStartSample: 836937
+    mEndSample: 836937
+  - mStartSample: 912537
+    mEndSample: 912537
+  - mStartSample: 988137
+    mEndSample: 988137
+  - mStartSample: 1063737
+    mEndSample: 1063737
   _SerializedPayloadTypes: []
   _ColorPayloads: []
   _ColorPayloadIdxs: 
