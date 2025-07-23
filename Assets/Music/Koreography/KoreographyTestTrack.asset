@@ -14,36 +14,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mEventID: Red
   mEventList:
-  - mStartSample: 5337
-    mEndSample: 5337
-  - mStartSample: 80937
-    mEndSample: 80937
-  - mStartSample: 156537
-    mEndSample: 156537
-  - mStartSample: 232137
-    mEndSample: 232137
-  - mStartSample: 307737
-    mEndSample: 307737
-  - mStartSample: 383337
-    mEndSample: 383337
-  - mStartSample: 458937
-    mEndSample: 458937
-  - mStartSample: 534537
-    mEndSample: 534537
-  - mStartSample: 610137
-    mEndSample: 610137
-  - mStartSample: 685737
-    mEndSample: 685737
-  - mStartSample: 761337
-    mEndSample: 761337
-  - mStartSample: 836937
-    mEndSample: 836937
-  - mStartSample: 912537
-    mEndSample: 912537
-  - mStartSample: 988137
-    mEndSample: 988137
-  - mStartSample: 1063737
-    mEndSample: 1063737
+  - mStartSample: 134569
+    mEndSample: 134569
+  - mStartSample: 210169
+    mEndSample: 210169
+  - mStartSample: 285769
+    mEndSample: 285769
+  - mStartSample: 361369
+    mEndSample: 361369
+  - mStartSample: 436969
+    mEndSample: 436969
+  - mStartSample: 512569
+    mEndSample: 512569
+  - mStartSample: 588169
+    mEndSample: 588169
+  - mStartSample: 663769
+    mEndSample: 663769
+  - mStartSample: 739369
+    mEndSample: 739369
+  - mStartSample: 814969
+    mEndSample: 814969
+  - mStartSample: 890569
+    mEndSample: 890569
+  - mStartSample: 966169
+    mEndSample: 966169
+  - mStartSample: 1041769
+    mEndSample: 1041769
+  - mStartSample: 1117369
+    mEndSample: 1117369
+  - mStartSample: 1192969
+    mEndSample: 1192969
   _SerializedPayloadTypes: []
   _ColorPayloads: []
   _ColorPayloadIdxs: 

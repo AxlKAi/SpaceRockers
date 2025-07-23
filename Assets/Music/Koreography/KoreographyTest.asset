@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: -2076007791, guid: aa81bbec85a3f423193272a7c6154986, type: 3}
   m_Name: KoreographyTest
   m_EditorClassIdentifier: 
-  mSourceClip: {fileID: 8300000, guid: f9316e432e1f6e24d9a3dc5c6677bc9d, type: 3}
+  mSourceClip: {fileID: 8300000, guid: c219d8a707042534d9c81695804698ab, type: 3}
   mAudioFilePath: 
   mSampleRate: 44100
   mIgnoreLatencyOffset: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
     beatsPerMeasure: 4
     bStartNewMeasure: 1
   - sectionName: Song
-    startSample: 5337
+    startSample: 134569
     samplesPerBeat: 18900
     beatsPerMeasure: 4
     bStartNewMeasure: 1
@@ -31,3 +31,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c64f112c235a75045b676e16da38d0bd, type: 2}
   - {fileID: 11400000, guid: 91ac7cdb209227a4e94f7f27afccaa51, type: 2}
   - {fileID: 11400000, guid: 91d8711513d1795408d1980dbb087c71, type: 2}
+  - {fileID: 11400000, guid: 4c7bb22f49da97a4c89be61ee04320c1, type: 2}
