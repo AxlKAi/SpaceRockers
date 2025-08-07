@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0564fbfa5b0fc4f96019c593d3f575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnebleActorPrefab: {fileID: -5521812731994451175, guid: cf053b37d39299e47812ca92d0371645,
+  spawnebleActorPrefab: {fileID: 6046363014198618386, guid: ef279d1dce3027c408efe4cef528317a,
     type: 3}
   pointToArrived: {fileID: 1265447300}
   eventID: Yellow_preload
@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 784224373}
   - component: {fileID: 784224372}
   - component: {fileID: 784224375}
+  - component: {fileID: 784224376}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -580,6 +581,22 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &784224376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784224371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3e5f51e31f79c4fb340e92ffc286e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedNormal: 10
+  speedFast: 50
+  mouseSensitivityX: 5
+  mouseSensitivityY: 5
 --- !u!1 &811119556
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,7 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0564fbfa5b0fc4f96019c593d3f575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnebleActorPrefab: {fileID: -7142680283077261893, guid: 6d8529bdf3b275348939d76e1660a9bb,
+  spawnebleActorPrefab: {fileID: 4435314464520393463, guid: 0138d6ad967bdab489e0511060ae31b4,
     type: 3}
   pointToArrived: {fileID: 57085381}
   eventID: red_preload
@@ -1416,14 +1433,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985235198}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.00026975712, y: 0.0003452959, z: -0.00080156955, w: 0.9999996}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 821.5218, y: 1, z: 926.61914}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 811119557}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.031, y: 0.04, z: -0.092}
 --- !u!65 &1985235200
 BoxCollider:
   m_ObjectHideFlags: 0

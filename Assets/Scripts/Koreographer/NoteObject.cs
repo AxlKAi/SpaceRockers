@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class NoteObject : MonoBehaviour
 {
+    //TODO delete all debug
+    [SerializeField]
+    private Text _debugText;
+
     private Vector3 _startPosition;
     private Vector3 _endPosition;
-    private float timeToArrived = 3f;
+    private float timeToArrived = 2f;
     private float remaindTtime;
 
     public Vector3 StartPosition        
@@ -30,8 +33,12 @@ public class NoteObject : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        float percentage = remaindTtime / timeToArrived;
         remaindTtime -= Time.deltaTime;
-        Vector3 interpolatedPosition = Vector3.Lerp( EndPosition, StartPosition, remaindTtime / timeToArrived);
+        Vector3 interpolatedPosition = Vector3.Lerp( EndPosition, StartPosition, percentage);
         transform.position = interpolatedPosition;
+
+        if(_debugText != null)
+            _debugText.text = $"{remaindTtime.ToString("F2")}";
     }
 }
