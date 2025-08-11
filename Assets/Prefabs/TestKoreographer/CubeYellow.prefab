@@ -213,6 +213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugText: {fileID: 7345324229015718293}
+  _speedWhileDieng: 5
+  _timeToDie: 1
+  _scaleDecreasWhileDie: 0.985
 --- !u!1 &2826076274112294254
 GameObject:
   m_ObjectHideFlags: 0

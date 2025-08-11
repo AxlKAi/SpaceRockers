@@ -14,30 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mEventID: White_preload
   mEventList:
-  - mStartSample: 21038
-    mEndSample: 21038
-  - mStartSample: 96638
-    mEndSample: 96638
-  - mStartSample: 172238
-    mEndSample: 172238
-  - mStartSample: 247838
-    mEndSample: 247838
-  - mStartSample: 323438
-    mEndSample: 323438
-  - mStartSample: 399038
-    mEndSample: 399038
-  - mStartSample: 474638
-    mEndSample: 474638
-  - mStartSample: 550238
-    mEndSample: 550238
-  - mStartSample: 625838
-    mEndSample: 625838
-  - mStartSample: 701438
-    mEndSample: 701438
-  - mStartSample: 777038
-    mEndSample: 777038
-  - mStartSample: 852638
-    mEndSample: 852638
+  - mStartSample: 40095
+    mEndSample: 40095
+  - mStartSample: 115695
+    mEndSample: 115695
+  - mStartSample: 191295
+    mEndSample: 191295
+  - mStartSample: 266895
+    mEndSample: 266895
+  - mStartSample: 342495
+    mEndSample: 342495
+  - mStartSample: 418095
+    mEndSample: 418095
+  - mStartSample: 493695
+    mEndSample: 493695
+  - mStartSample: 569295
+    mEndSample: 569295
+  - mStartSample: 644895
+    mEndSample: 644895
+  - mStartSample: 720495
+    mEndSample: 720495
+  - mStartSample: 796095
+    mEndSample: 796095
+  - mStartSample: 871695
+    mEndSample: 871695
   _SerializedPayloadTypes: []
   _ColorPayloads: []
   _ColorPayloadIdxs: 
