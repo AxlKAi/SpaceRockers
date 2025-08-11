@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1223223985, guid: aa81bbec85a3f423193272a7c6154986, type: 3}
-  m_Name: red_preload
+  m_Name: RedPreload
   m_EditorClassIdentifier: 
-  mEventID: red_preload
+  mEventID: RedPreload
   mEventList:
   - mStartSample: 2295
     mEndSample: 2295
@@ -34,16 +34,6 @@ MonoBehaviour:
     mEndSample: 607095
   - mStartSample: 682695
     mEndSample: 682695
-  - mStartSample: 758295
-    mEndSample: 758295
-  - mStartSample: 833895
-    mEndSample: 833895
-  - mStartSample: 909495
-    mEndSample: 909495
-  - mStartSample: 985095
-    mEndSample: 985095
-  - mStartSample: 1060695
-    mEndSample: 1060695
   _SerializedPayloadTypes: []
   _ColorPayloads: []
   _ColorPayloadIdxs: 

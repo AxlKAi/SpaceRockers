@@ -430,7 +430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &175242133
 Transform:
   m_ObjectHideFlags: 0
@@ -926,7 +926,7 @@ MonoBehaviour:
   spawnebleActorPrefab: {fileID: 4435314464520393463, guid: 0138d6ad967bdab489e0511060ae31b4,
     type: 3}
   pointToArrived: {fileID: 57085381}
-  eventID: red_preload
+  eventID: RedPreload
 --- !u!1 &1382591841
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +943,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1382591842
 Transform:
   m_ObjectHideFlags: 0

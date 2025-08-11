@@ -9,7 +9,7 @@ public class NoteObject : MonoBehaviour
 
     private Vector3 _startPosition;
     private Vector3 _endPosition;
-    private float timeToArrived = 2f;
+    private float timeToArrived = 3f;
     private float remaindTtime;
 
     public Vector3 StartPosition        
