@@ -40,7 +40,6 @@ public class MusicalEventTrigger : MonoBehaviour
 
     private void OnEventAction(KoreographyEvent evt)
     {
-        Debug.Log("Music event");
         currentScale = startScale * scaleKoefficient;
 
         falloffTimertCont = fallofTime;

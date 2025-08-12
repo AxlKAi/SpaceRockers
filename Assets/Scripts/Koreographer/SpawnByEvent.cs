@@ -1,5 +1,6 @@
 using UnityEngine;
 using SonicBloom.Koreo;
+using System.Collections.Generic;
 
 public class SpawnByEvent : MonoBehaviour
 {
@@ -9,8 +10,37 @@ public class SpawnByEvent : MonoBehaviour
     [SerializeField]
     private GameObject pointToArrived;
 
+    [SerializeField]
+    private float _unreachebleDistance = 3f;
+
     [EventID]
     public string eventID;
+
+    private List<NoteObject> _notes = new List<NoteObject>();
+
+    public float GetDeltaTime()
+    {
+        float distance = _unreachebleDistance;
+
+        foreach (var note in _notes)
+        {
+            var noteDistance = note.GetRemainingTime();
+
+            if (noteDistance < distance)
+                distance = noteDistance;
+        }
+
+        return distance;
+    }
+
+    public void DestroyNote(NoteObject note)
+    {
+        if (_notes.Contains(note))
+        {
+            _notes.Remove(note);
+            Destroy(note);
+        }
+    } 
 
     private void Awake()
     {
@@ -37,5 +67,7 @@ public class SpawnByEvent : MonoBehaviour
         var newObject = Instantiate(spawnebleActorPrefab, transform.position, Quaternion.identity);
         newObject.StartPosition = transform.position;
         newObject.EndPosition = pointToArrived.transform.position;
+        newObject.Spawner = this;
+        _notes.Add(newObject);
     }
 }

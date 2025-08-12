@@ -13,10 +13,12 @@ public class NoteObject : MonoBehaviour
     [SerializeField]
     private float _scaleDecreasWhileDie = .93f;
 
+    private SpawnByEvent _spawner; 
     private Vector3 _startPosition;
     private Vector3 _endPosition;
-    private float timeToArrived = 3f;
-    private float remaindTtime;
+    private float _timeToArrived = 3f;
+    private float _remaindTime;
+    private float _remaindTimeToDie;
     private bool _isBeforArrived = true; 
 
     public Vector3 StartPosition        
@@ -31,10 +33,28 @@ public class NoteObject : MonoBehaviour
         set => _endPosition = value;
     }
 
-    // Start is called before the first frame update
+    public SpawnByEvent Spawner
+    {
+        get => _spawner;
+        set => _spawner = value;
+    }
+
+    public float GetRemainingTime()
+    {
+        float time =  0;
+
+        if (_isBeforArrived)
+            time = _remaindTime;
+        else
+            time = _timeToDie - _remaindTimeToDie;
+
+        return time;
+    }
+
     private void Start()
     {
-        remaindTtime = timeToArrived;
+        _remaindTime = _timeToArrived;
+        _remaindTimeToDie = _timeToDie;
     }
 
     // Update is called once per frame
@@ -42,22 +62,22 @@ public class NoteObject : MonoBehaviour
     {
         if (_isBeforArrived)
         {
-            float percentage = remaindTtime / timeToArrived;
-            remaindTtime -= Time.deltaTime;
+            float percentage = _remaindTime / _timeToArrived;
+            _remaindTime -= Time.deltaTime;
             Vector3 interpolatedPosition = Vector3.Lerp( EndPosition, StartPosition, percentage);
             transform.position = interpolatedPosition;
 
-            if (remaindTtime < 0)
+            if (_remaindTime < 0)
                 _isBeforArrived = false;
 
             if(_debugText != null)
-                _debugText.text = $"{remaindTtime.ToString("F2")}";
+                _debugText.text = $"{_remaindTime.ToString("F2")}";
         }
         else
         {
-            if(_timeToDie > 0)
+            if(_remaindTimeToDie > 0)
             {
-                _timeToDie -= Time.deltaTime;
+                _remaindTimeToDie -= Time.deltaTime;
                 Vector3 newPosition = new Vector3(
                     transform.position.x,
                     transform.position.y,
@@ -69,7 +89,7 @@ public class NoteObject : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+                _spawner.DestroyNote(this);
             }
         }
     }
