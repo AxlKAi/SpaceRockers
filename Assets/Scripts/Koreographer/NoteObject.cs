@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class NoteObject : MonoBehaviour
 {
-    //TODO delete all debug
-    [SerializeField]
-    private Text _debugText;
     [SerializeField]
     private float _speedWhileDieng = 1f;
     [SerializeField]
@@ -57,7 +54,6 @@ public class NoteObject : MonoBehaviour
         _remaindTimeToDie = _timeToDie;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (_isBeforArrived)
@@ -69,27 +65,26 @@ public class NoteObject : MonoBehaviour
 
             if (_remaindTime < 0)
                 _isBeforArrived = false;
-
-            if(_debugText != null)
-                _debugText.text = $"{_remaindTime.ToString("F2")}";
         }
         else
         {
             if(_remaindTimeToDie > 0)
             {
                 _remaindTimeToDie -= Time.deltaTime;
+
                 Vector3 newPosition = new Vector3(
                     transform.position.x,
                     transform.position.y,
                     transform.position.z - _speedWhileDieng * Time.deltaTime
                 );
                 transform.position = newPosition;
+
                 Vector3 newScale = transform.localScale * _scaleDecreasWhileDie;
                 transform.localScale = newScale;
             }
             else
             {
-                _spawner.DestroyNote(this);
+                _spawner.DestroyNote(this, gameObject);
             }
         }
     }

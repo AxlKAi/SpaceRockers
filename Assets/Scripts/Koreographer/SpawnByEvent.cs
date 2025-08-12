@@ -18,6 +18,11 @@ public class SpawnByEvent : MonoBehaviour
 
     private List<NoteObject> _notes = new List<NoteObject>();
 
+    public Vector3 PointsToArrivedPosition 
+    { 
+        get { return pointToArrived.transform.position; } 
+    }
+
     public float GetDeltaTime()
     {
         float distance = _unreachebleDistance;
@@ -33,12 +38,12 @@ public class SpawnByEvent : MonoBehaviour
         return distance;
     }
 
-    public void DestroyNote(NoteObject note)
+    public void DestroyNote(NoteObject note, GameObject obj)
     {
         if (_notes.Contains(note))
         {
             _notes.Remove(note);
-            Destroy(note);
+            Destroy(obj);
         }
     } 
 

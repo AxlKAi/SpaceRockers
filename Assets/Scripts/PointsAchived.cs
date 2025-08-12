@@ -15,19 +15,9 @@ public class PointsAchived : MonoBehaviour
     private bool _isInDissapearanceMode = false;
     private float _dissapearanceElapsetTime;
 
-    public void SetValue(int value)
+    public void SetValue(string value)
     {
-        if (value > 100)
-        {
-            value = 99;
-
-        }
-
-        if (value < -100)
-        {
-            value = -99;
-
-        }
+        _uiText.text = value;
     }
 
     // Start is called before the first frame update
