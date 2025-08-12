@@ -11,7 +11,7 @@ public class SpawnByEvent : MonoBehaviour
     private GameObject pointToArrived;
 
     [SerializeField]
-    private float _unreachebleDistance = 3f;
+    private float _unreachebleTimer = 1f;
 
     [EventID]
     public string eventID;
@@ -25,7 +25,7 @@ public class SpawnByEvent : MonoBehaviour
 
     public float GetDeltaTime()
     {
-        float distance = _unreachebleDistance;
+        float distance = _unreachebleTimer;
 
         foreach (var note in _notes)
         {
@@ -38,6 +38,38 @@ public class SpawnByEvent : MonoBehaviour
         return distance;
     }
 
+    public NoteObject GetGetNearNote()
+    {
+        NoteObject catchedNote = null;
+
+        float distance = _unreachebleTimer;
+
+        foreach (var note in _notes)
+        {
+            var noteDistance = note.GetRemainingTime();
+
+            if (noteDistance < distance)
+            {
+                distance = noteDistance;
+                catchedNote = note;
+            }
+        }
+
+        return catchedNote;
+    }
+
+
+    public void CatchNote()
+    {
+        var note = GetGetNearNote();
+
+        if (_notes.Contains(note))
+        {
+            _notes.Remove(note);
+            note.Catched();
+        }
+    }
+
     public void DestroyNote(NoteObject note, GameObject obj)
     {
         if (_notes.Contains(note))
@@ -47,6 +79,11 @@ public class SpawnByEvent : MonoBehaviour
         }
     } 
 
+    public void SetMaxDistance(float time)
+    {
+        _unreachebleTimer = time;
+    }
+
     private void Awake()
     {
         Koreographer.Instance.RegisterForEvents(eventID, OnEventAction);
@@ -55,7 +92,7 @@ public class SpawnByEvent : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        
+           
     }
 
     // Update is called once per frame

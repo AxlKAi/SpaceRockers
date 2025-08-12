@@ -9,6 +9,9 @@ public class NoteObject : MonoBehaviour
     private float _timeToDie = 1f;
     [SerializeField]
     private float _scaleDecreasWhileDie = .93f;
+    [SerializeField]
+    private float _scaleDecreasWhenCatched = .85f;
+    
 
     private SpawnByEvent _spawner; 
     private Vector3 _startPosition;
@@ -16,7 +19,8 @@ public class NoteObject : MonoBehaviour
     private float _timeToArrived = 3f;
     private float _remaindTime;
     private float _remaindTimeToDie;
-    private bool _isBeforArrived = true; 
+    private bool _isBeforArrived = true;
+    private bool _isCatched = false;
 
     public Vector3 StartPosition        
     {
@@ -48,6 +52,13 @@ public class NoteObject : MonoBehaviour
         return time;
     }
 
+    public void Catched()
+    {
+        _isCatched = true;
+        _isBeforArrived = false;
+    }
+
+
     private void Start()
     {
         _remaindTime = _timeToArrived;
@@ -65,6 +76,27 @@ public class NoteObject : MonoBehaviour
 
             if (_remaindTime < 0)
                 _isBeforArrived = false;
+        }
+        else if(_isCatched)
+        {
+            if (_remaindTimeToDie > 0)
+            {
+                _remaindTimeToDie -= Time.deltaTime;
+
+                Vector3 newPosition = new Vector3(
+                    transform.position.x,
+                    transform.position.y + _speedWhileDieng * Time.deltaTime,
+                    transform.position.z
+                );
+                transform.position = newPosition;
+
+                Vector3 newScale = transform.localScale * _scaleDecreasWhenCatched;
+                transform.localScale = newScale;
+            }
+            else
+            {
+                _spawner.DestroyNote(this, gameObject);
+            }
         }
         else
         {

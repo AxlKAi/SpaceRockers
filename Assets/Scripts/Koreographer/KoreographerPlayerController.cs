@@ -47,6 +47,10 @@ public class KoreographerPlayerController : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartKoreographer());
+
+        _spawner1.SetMaxDistance(_hightPointPeriod);
+        _spawner2.SetMaxDistance(_hightPointPeriod);
+        _spawner3.SetMaxDistance(_hightPointPeriod);
     }
 
     private void Update()
@@ -56,6 +60,7 @@ public class KoreographerPlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             points = GetPoints(_spawner1.GetDeltaTime());
+            _spawner1.CatchNote();
             Debug.Log("'I' distance =" + points);
             SpawnPoints(_spawner1, points);
         }
@@ -63,6 +68,7 @@ public class KoreographerPlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O))
         {
             points = GetPoints(_spawner2.GetDeltaTime());
+            _spawner2.CatchNote();
             Debug.Log("'O' distance =" + points);
             SpawnPoints(_spawner2, points);
         }
@@ -70,6 +76,7 @@ public class KoreographerPlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             points = GetPoints(_spawner3.GetDeltaTime());
+            _spawner3.CatchNote();
             Debug.Log("'P' distance =" + points);
             SpawnPoints(_spawner3, points);
         }
@@ -78,7 +85,7 @@ public class KoreographerPlayerController : MonoBehaviour
         {
             ++_totalNotesCatched;
 
-            _bpmText.text = (_totalPoints / Time.realtimeSinceStartup / 60f).ToString("F0"); 
+            _bpmText.text = ( _totalNotesCatched / (Time.realtimeSinceStartup / 60f)).ToString("F2"); 
         }
 
         _totalPoints += points;
