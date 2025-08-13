@@ -81,7 +81,7 @@ public class SpawnByEvent : MonoBehaviour
 
     public void SetMaxDistance(float time)
     {
-        _unreachebleTimer = time;
+        _unreachebleTimer = time + .1f;
     }
 
     private void Awake()

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78a75d8185cd764c8db3504e9c6303c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugText: {fileID: 0}
   _speedWhileDieng: 5
   _timeToDie: 1
   _scaleDecreasWhileDie: 0.985
+  _scaleDecreasWhenCatched: 0.98

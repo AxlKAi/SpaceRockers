@@ -10,7 +10,7 @@ public class NoteObject : MonoBehaviour
     [SerializeField]
     private float _scaleDecreasWhileDie = .93f;
     [SerializeField]
-    private float _scaleDecreasWhenCatched = .85f;
+    private float _scaleDecreasWhenCatched = .9f;
     
 
     private SpawnByEvent _spawner; 
@@ -84,7 +84,7 @@ public class NoteObject : MonoBehaviour
                 _remaindTimeToDie -= Time.deltaTime;
 
                 Vector3 newPosition = new Vector3(
-                    transform.position.x,
+                    transform.position.x + _speedWhileDieng * Time.deltaTime,
                     transform.position.y + _speedWhileDieng * Time.deltaTime,
                     transform.position.z
                 );
@@ -95,7 +95,7 @@ public class NoteObject : MonoBehaviour
             }
             else
             {
-                _spawner.DestroyNote(this, gameObject);
+                Destroy(gameObject);
             }
         }
         else

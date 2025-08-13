@@ -48,9 +48,9 @@ public class KoreographerPlayerController : MonoBehaviour
     {
         StartCoroutine(StartKoreographer());
 
-        _spawner1.SetMaxDistance(_hightPointPeriod);
-        _spawner2.SetMaxDistance(_hightPointPeriod);
-        _spawner3.SetMaxDistance(_hightPointPeriod);
+        _spawner1.SetMaxDistance(_lowPointPeriod);
+        _spawner2.SetMaxDistance(_lowPointPeriod);
+        _spawner3.SetMaxDistance(_lowPointPeriod);
     }
 
     private void Update()
@@ -60,25 +60,36 @@ public class KoreographerPlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             points = GetPoints(_spawner1.GetDeltaTime());
-            _spawner1.CatchNote();
-            Debug.Log("'I' distance =" + points);
-            SpawnPoints(_spawner1, points);
+            if (points > 0)
+            {
+                _spawner1.CatchNote();
+                Debug.Log("'I' distance =" + points);
+                SpawnPoints(_spawner1, points);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.O))
         {
             points = GetPoints(_spawner2.GetDeltaTime());
-            _spawner2.CatchNote();
-            Debug.Log("'O' distance =" + points);
-            SpawnPoints(_spawner2, points);
+
+            if(points > 0)
+            {
+                _spawner2.CatchNote();
+                Debug.Log("'O' distance =" + points);
+                SpawnPoints(_spawner2, points);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
             points = GetPoints(_spawner3.GetDeltaTime());
-            _spawner3.CatchNote();
-            Debug.Log("'P' distance =" + points);
-            SpawnPoints(_spawner3, points);
+
+            if (points > 0)
+            {
+                _spawner3.CatchNote();
+                Debug.Log("'P' distance =" + points);
+                SpawnPoints(_spawner3, points);
+            }
         }
 
         if (points > 0)
@@ -138,7 +149,7 @@ public class KoreographerPlayerController : MonoBehaviour
             Koreographer.Instance.LoadKoreography(_koreographyAsset);
 
             //TODO LoadSong только для старта с определённой точки трека
-            _musicPlayer.LoadSong(_koreographyAsset, 999990, false);
+            // _musicPlayer.LoadSong(_koreographyAsset, 999990, false);
             _musicPlayer.Play();
         }
         else
