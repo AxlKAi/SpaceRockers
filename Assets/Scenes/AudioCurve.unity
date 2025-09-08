@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &88680447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &140201426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &256664290
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -452,7 +452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &397847636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,7 +527,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f9316e432e1f6e24d9a3dc5c6677bc9d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c219d8a707042534d9c81695804698ab, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.03
   m_Pitch: 1
@@ -695,7 +695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!120 &999022853
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -901,7 +901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1154084297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,13 +1080,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e9665a937acbbc40bb87151ee7c0f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _altitude: 120
-  _maxForce: 50000
-  _spherecastRadius: 2
-  _maxDistance: 150
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  _strafeForce: 0
+  _forwardSpeed: 0
 --- !u!1 &1226014853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,7 +1098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1226014854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,7 +1145,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1430880816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1292,7 +1287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1546726605
 Transform:
   m_ObjectHideFlags: 0
@@ -1441,7 +1436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1655416409
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1633,7 +1628,7 @@ GameObject:
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1711123581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1680,7 +1675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1737928473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1751,7 +1746,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _engine: {fileID: 1217986352}
-  _constantForcePower: 10000
+  _camera: {fileID: 0}
+  _cameraDistance: 0
+  _cameraSlideTime: 0
 --- !u!65 &1966208103
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1807,7 +1804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2013140780
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2000,7 +1997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2093861248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2047,7 +2044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2139656374
 BoxCollider:
   m_ObjectHideFlags: 0
