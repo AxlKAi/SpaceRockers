@@ -14,24 +14,28 @@ public class TunelGenerator : MonoBehaviour
     private GameObject _gatePrefab;
     [SerializeField]
     private LineRendererSmoother _wayLine;
+    [SerializeField]
+    private GameObject _parentTunelActor;
 
     private float _lastSpawnedZ;
     private Vector3[] _wayLinePoints;
 
     private void Start()
     {
+        CheckupInitParametrs();
+
         StartTunel();
     }
 
-    private void StartTunel()
+    private void CheckupInitParametrs()
     {
-        if(_generatingPoint == null || _catcherPoint == null)
+        if (_generatingPoint == null || _catcherPoint == null)
         {
             Debug.LogError("Generators points not set up");
             return;
         }
 
-        if(_gatePrefab == null)
+        if (_gatePrefab == null)
         {
             Debug.LogError("Gate prefab not set");
             return;
@@ -43,7 +47,17 @@ public class TunelGenerator : MonoBehaviour
             return;
         }
 
+        if (_parentTunelActor == null)
+        {
+            Debug.LogError("No parent actor for instantiating tunel prefabs selected");
+            return;
+        }
+    }
+
+    private void StartTunel()
+    {
         int numPositions = _wayLine.Line.positionCount;
+        Vector3 lookAtPoint;
         _wayLinePoints = new Vector3[numPositions];
         _wayLine.Line.GetPositions(_wayLinePoints);
 
@@ -51,22 +65,27 @@ public class TunelGenerator : MonoBehaviour
 
         while (_lastSpawnedZ <= _generatingPoint.transform.position.z)
         {
-            Vector3 spawnedPosition = GetWayLinePoint();
+            Vector3 spawnedPosition = GetWayLinePoint(out lookAtPoint);
 
-            Instantiate(_gatePrefab, spawnedPosition, Quaternion.identity);
+            var actor = Instantiate(_gatePrefab, spawnedPosition, Quaternion.identity);
+            actor.transform.LookAt(lookAtPoint);
+            actor.transform.parent = _parentTunelActor.transform;
+
             _lastSpawnedZ += _step;
         }
     }
 
-    private Vector3 GetWayLinePoint()
+    private Vector3 GetWayLinePoint(out Vector3 lookAtPoint)
     {
+        lookAtPoint = Vector3.zero;
+
         if (_wayLinePoints == null)
         {
             Debug.LogError("No points in _wayLinePoints");
             return _generatingPoint.transform.position;
         }
 
-        Vector3 way = Vector3.zero;
+        Vector3 centerPoint = Vector3.zero;
         int nearIndex = 0;
 
         for(int i = 0; i<_wayLinePoints.Length; i++)        
@@ -80,21 +99,24 @@ public class TunelGenerator : MonoBehaviour
 
         if(nearIndex > 0)
         {
-            float length = _wayLinePoints[nearIndex].z - _wayLinePoints[nearIndex - 1].z;
+            lookAtPoint = _wayLinePoints[nearIndex - 1];
+
+            float length = _wayLinePoints[nearIndex].z - lookAtPoint.z;
             float k = _wayLinePoints[nearIndex].z - _lastSpawnedZ;
             float ratio = k / length;
 
-            way = Vector3.Lerp(_wayLinePoints[nearIndex], _wayLinePoints[nearIndex-1], ratio);
+            centerPoint = Vector3.Lerp(_wayLinePoints[nearIndex], lookAtPoint, ratio);
 
-            Debug.Log($"Point{nearIndex} coord:{_wayLinePoints[nearIndex]}   point{nearIndex - 1} coord:{_wayLinePoints[nearIndex - 1]}");
-            Debug.Log($"For Z={_lastSpawnedZ} ratio = {ratio}  point={way}");
+            //TODO remove debug
+            //Debug.Log($"Point{nearIndex} coord:{_wayLinePoints[nearIndex]}   point{nearIndex - 1} coord:{lookAtPoint}");
+            //Debug.Log($"For Z={_lastSpawnedZ} ratio = {ratio}  point={centerPoint}");
         }
         else
         {
-            way = _wayLinePoints[0];
+            centerPoint = _wayLinePoints[0];
         }
 
-        return way;
+        return centerPoint;
     }
 
     // Update is called once per frame

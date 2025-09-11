@@ -611,6 +611,7 @@ MonoBehaviour:
   _gatePrefab: {fileID: 1982080427692141121, guid: f9dacd9ac7d19c842851303b62825292,
     type: 3}
   _wayLine: {fileID: 1102302222}
+  _parentTunelActor: {fileID: 1698878232}
 --- !u!4 &556392935
 Transform:
   m_ObjectHideFlags: 0
