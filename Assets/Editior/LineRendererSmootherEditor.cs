@@ -11,6 +11,7 @@ public class LineRendererSmootherEditor : Editor
     private SerializedProperty InitialState;
     private SerializedProperty SmoothingLength;
     private SerializedProperty SmoothingSections;
+    private SerializedProperty GameObjectsList;
 
     private GUIContent UpdateInitialStateGUIContent = new GUIContent("Set Initial State");
     private GUIContent SmoothButtonGUIContent = new GUIContent("Smooth Path");
@@ -31,6 +32,7 @@ public class LineRendererSmootherEditor : Editor
         InitialState = serializedObject.FindProperty("InitialState");
         SmoothingLength = serializedObject.FindProperty("SmoothingLength");
         SmoothingSections = serializedObject.FindProperty("SmoothingSections");
+        GameObjectsList = serializedObject.FindProperty("GameObjects");
 
         EnsureCurvesMatchLineRendererPositions();
     }
@@ -47,11 +49,27 @@ public class LineRendererSmootherEditor : Editor
         EditorGUILayout.PropertyField(InitialState);
         EditorGUILayout.PropertyField(SmoothingLength);
         EditorGUILayout.PropertyField(SmoothingSections);
+        EditorGUILayout.PropertyField(GameObjectsList);
 
         if (GUILayout.Button(UpdateInitialStateGUIContent))
         {
-            Smoother.InitialState = new Vector3[Smoother.Line.positionCount];
-            Smoother.Line.GetPositions(Smoother.InitialState);
+            if(Smoother.GameObjects != null && Smoother.GameObjects.Length > 0)
+            {
+                Smoother.InitialState = new Vector3[Smoother.GameObjects.Length];
+
+                int i = 0;
+
+                foreach (var point in Smoother.GameObjects)
+                {
+                    Smoother.InitialState[i] = point.transform.position;
+                    i++;
+                }
+            }
+            else
+            {
+                Smoother.InitialState = new Vector3[Smoother.Line.positionCount];
+                Smoother.Line.GetPositions(Smoother.InitialState);
+            }
         }
 
         EditorGUILayout.BeginHorizontal();
