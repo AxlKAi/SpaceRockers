@@ -13,10 +13,10 @@ public class TunelGenerator : MonoBehaviour
     [SerializeField]
     private GameObject _gatePrefab;
     [SerializeField]
-    private LineRendererSmoother _smoother;
+    private LineRendererSmoother _wayLine;
 
     private float _lastSpawnedZ;
-    private Vector3[] _smootherPoints;
+    private Vector3[] _wayLinePoints;
 
     private void Start()
     {
@@ -42,18 +42,59 @@ public class TunelGenerator : MonoBehaviour
             Debug.LogError("Smoother line component not set");
             return;
         }
-        
-        _smoother.Line.GetPositions(_smootherPoints);
+
+        int numPositions = _wayLine.Line.positionCount;
+        _wayLinePoints = new Vector3[numPositions];
+        _wayLine.Line.GetPositions(_wayLinePoints);
 
         _lastSpawnedZ = _catcherPoint.transform.position.z;
 
         while (_lastSpawnedZ <= _generatingPoint.transform.position.z)
         {
-            Vector3 spawnedPosition = new Vector3(transform.position.x, transform.position.y, _lastSpawnedZ);
-            
+            Vector3 spawnedPosition = GetWayLinePoint();
+
             Instantiate(_gatePrefab, spawnedPosition, Quaternion.identity);
             _lastSpawnedZ += _step;
         }
+    }
+
+    private Vector3 GetWayLinePoint()
+    {
+        if (_wayLinePoints == null)
+        {
+            Debug.LogError("No points in _wayLinePoints");
+            return _generatingPoint.transform.position;
+        }
+
+        Vector3 way = Vector3.zero;
+        int nearIndex = 0;
+
+        for(int i = 0; i<_wayLinePoints.Length; i++)        
+        {
+            if(_wayLinePoints[i].z > _lastSpawnedZ)
+            {
+                nearIndex = i;
+                break;
+            }
+        }
+
+        if(nearIndex > 0)
+        {
+            float length = _wayLinePoints[nearIndex].z - _wayLinePoints[nearIndex - 1].z;
+            float k = _wayLinePoints[nearIndex].z - _lastSpawnedZ;
+            float ratio = k / length;
+
+            way = Vector3.Lerp(_wayLinePoints[nearIndex], _wayLinePoints[nearIndex-1], ratio);
+
+            Debug.Log($"Point{nearIndex} coord:{_wayLinePoints[nearIndex]}   point{nearIndex - 1} coord:{_wayLinePoints[nearIndex - 1]}");
+            Debug.Log($"For Z={_lastSpawnedZ} ratio = {ratio}  point={way}");
+        }
+        else
+        {
+            way = _wayLinePoints[0];
+        }
+
+        return way;
     }
 
     // Update is called once per frame

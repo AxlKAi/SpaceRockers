@@ -71,8 +71,6 @@ public class SimpleHexagon : MonoBehaviour
             _baseColorOfLowerLines.b * glowIntensivity
         );
 
-        Debug.Log(newUpperColor);
-
         if (_upperLinesMaterial != null)
             _upperLinesMaterial.SetColor("_EmissionColor", newUpperColor);
 

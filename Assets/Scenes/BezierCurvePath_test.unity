@@ -610,7 +610,7 @@ MonoBehaviour:
   _step: 30
   _gatePrefab: {fileID: 1982080427692141121, guid: f9dacd9ac7d19c842851303b62825292,
     type: 3}
-  _smoother: {fileID: 0}
+  _wayLine: {fileID: 1102302222}
 --- !u!4 &556392935
 Transform:
   m_ObjectHideFlags: 0
@@ -848,7 +848,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903512722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.09, y: 1.8, z: 800}
+  m_LocalPosition: {x: -32, y: 1.8, z: 800}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -930,12 +930,12 @@ GameObject:
   - component: {fileID: 1102302223}
   - component: {fileID: 1102302222}
   m_Layer: 0
-  m_Name: BezierCurve
+  m_Name: Curve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1102302222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,11 +951,11 @@ MonoBehaviour:
   Line: {fileID: 1102302223}
   InitialState:
   - {x: 0.1, y: 3, z: -59.7}
-  - {x: 2, y: 2, z: 170}
-  - {x: 0, y: 1, z: 370}
-  - {x: -2, y: 0, z: 600}
-  - {x: -2.09, y: 1.8, z: 800}
-  - {x: -8.78, y: 3.7, z: 1000}
+  - {x: -64, y: 2, z: 172.05}
+  - {x: -15, y: 1, z: 370}
+  - {x: 40, y: 0, z: 600}
+  - {x: -32, y: 1.8, z: 800}
+  - {x: 27, y: 3.7, z: 1000}
   - {x: -3.4, y: 5.8, z: 1200}
   - {x: 13.23, y: 3.8, z: 1400}
   SmoothingLength: 0
@@ -1012,13 +1012,40 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0.1, y: 3, z: -59.7}
-  - {x: 2, y: 2, z: 170}
-  - {x: 0, y: 1, z: 370}
-  - {x: -2, y: 0, z: 600}
-  - {x: -2.09, y: 1.8, z: 800}
-  - {x: -8.78, y: 3.7, z: 1000}
+  - {x: -11.558501, y: 2.859651, z: -26.37854}
+  - {x: -27.842638, y: 2.6886704, z: 14.837443}
+  - {x: -44.70752, y: 2.4878635, z: 62.5677}
+  - {x: -58.10827, y: 2.258038, z: 115.43198}
+  - {x: -64, y: 2, z: 172.05}
+  - {x: -59.282684, y: 1.7654997, z: 220.49353}
+  - {x: -46.941345, y: 1.58275, z: 255.65677}
+  - {x: -32.058655, y: 1.4172502, z: 286.39325}
+  - {x: -19.717316, y: 1.2345004, z: 321.5565}
+  - {x: -15, y: 1, z: 370}
+  - {x: -2.4709136, y: 0.7644952, z: 421.90295}
+  - {x: 7.7645445, y: 0.5822476, z: 464.9515}
+  - {x: 17.235458, y: 0.41775241, z: 505.04852}
+  - {x: 27.470915, y: 0.23550487, z: 548.09705}
+  - {x: 40, y: 0, z: 600}
+  - {x: 30.983639, y: 0.24824329, z: 648.35333}
+  - {x: 13.891821, y: 0.6641217, z: 684.1767}
+  - {x: -5.891821, y: 1.1358783, z: 715.82336}
+  - {x: -22.98364, y: 1.5517569, z: 751.6467}
+  - {x: -32, y: 1.8, z: 800}
+  - {x: -26.667145, y: 2.250739, z: 848.1593}
+  - {x: -11.6335745, y: 2.5953696, z: 884.0797}
+  - {x: 6.6335745, y: 2.9046307, z: 915.92035}
+  - {x: 21.667145, y: 3.2492611, z: 951.8407}
+  - {x: 27, y: 3.7, z: 1000}
+  - {x: 25.748812, y: 4.1990795, z: 1048.8467}
+  - {x: 17.254408, y: 4.5795403, z: 1084.4235}
+  - {x: 6.3455915, y: 4.92046, z: 1115.5767}
+  - {x: -2.148814, y: 5.300921, z: 1151.1533}
   - {x: -3.4, y: 5.8, z: 1200}
-  - {x: 13.23, y: 3.8, z: 1400}
+  - {x: -2.641126, y: 5.5979776, z: 1249.3854}
+  - {x: 1.968437, y: 5.098989, z: 1284.6927}
+  - {x: 7.8615627, y: 4.501012, z: 1315.3073}
+  - {x: 12.471126, y: 4.0020227, z: 1350.6145}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -1027,7 +1054,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.019107819
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1148,7 +1175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268506499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 600}
+  m_LocalPosition: {x: 40, y: 0, z: 600}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1245,7 +1272,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383227592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 370}
+  m_LocalPosition: {x: -15, y: 1, z: 370}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1325,7 +1352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1414539436}
   m_Layer: 0
-  m_Name: BezierPoints
+  m_Name: WayPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1430,7 +1457,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612376906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.78, y: 3.7, z: 1000}
+  m_LocalPosition: {x: 27, y: 3.7, z: 1000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1527,7 +1554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638958961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 42, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1655,7 +1682,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703252343}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 2, z: 170}
+  m_LocalPosition: {x: -64, y: 2, z: 172.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
