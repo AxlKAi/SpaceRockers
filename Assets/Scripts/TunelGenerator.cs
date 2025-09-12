@@ -8,7 +8,7 @@ public class TunelGenerator : MonoBehaviour
     [SerializeField]
     private GameObject _generatingPoint;
     [SerializeField]
-    private GameObject _catcherPoint;
+    private TunelGeneratorCatcher _catcherPoint;
     [SerializeField]
     private float _step = 100f;
     [SerializeField]
@@ -44,6 +44,10 @@ public class TunelGenerator : MonoBehaviour
         {
             Debug.LogError("Generators points not set up");
             return;
+        } 
+        else
+        {
+            _catcherPoint.OnTunelWallTrigger += CatchGatePrefab;
         }
 
         if (_gatePrefab == null)
@@ -52,7 +56,7 @@ public class TunelGenerator : MonoBehaviour
             return;
         }
 
-        if (_gatePrefab == null)
+        if (_wayLine == null)
         {
             Debug.LogError("Smoother line component not set");
             return;
@@ -125,5 +129,10 @@ public class TunelGenerator : MonoBehaviour
         }
 
         return centerPoint;
+    }
+
+    private void CatchGatePrefab(TunelWall wall)
+    {
+        Debug.Log("Generator method");
     }
 }
