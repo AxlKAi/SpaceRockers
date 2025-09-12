@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class TunelGenerator : MonoBehaviour
 {
@@ -19,9 +20,19 @@ public class TunelGenerator : MonoBehaviour
 
     private float _lastSpawnedZ;
     private Vector3[] _wayLinePoints;
+    private ObjectPool<GameObject> _pool;
 
     private void Start()
     {
+        _pool = new ObjectPool<GameObject>(
+            createFunc: () => Instantiate(_gatePrefab), 
+            actionOnGet: (obj) => obj.SetActive(true), 
+            actionOnRelease: (obj) => obj.SetActive(false), 
+            actionOnDestroy: (obj) => Destroy(obj), 
+            collectionCheck: false,
+            defaultCapacity: 45, 
+            maxSize: 50);
+
         CheckupInitParametrs();
 
         StartTunel();
@@ -67,7 +78,8 @@ public class TunelGenerator : MonoBehaviour
         {
             Vector3 spawnedPosition = GetWayLinePoint(out lookAtPoint);
 
-            var actor = Instantiate(_gatePrefab, spawnedPosition, Quaternion.identity);
+            var actor = _pool.Get();
+            actor.transform.position = spawnedPosition;
             actor.transform.LookAt(lookAtPoint);
             actor.transform.parent = _parentTunelActor.transform;
 
@@ -119,9 +131,35 @@ public class TunelGenerator : MonoBehaviour
         return centerPoint;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        //spawn new prefab
+       if( _generatingPoint.transform.position.z - _lastSpawnedZ > _step)
+       { 
+            
+       }
+
+        //catch pref
+        GameObject pref; 
+        // if( TryGetLostPrefab(out pref))
+        {
+
+        }
     }
+
+    /*
+    private bool TryGetLostPrefab(out GameObject pref)
+    {
+        bool isLostPrefabFound = false;
+        pref = null;
+
+        foreach (var actor in _wayLinePoints)
+        {
+            if (actor.z < _catcherPoint.transform.position.z)
+                pref = actor;
+        }
+
+        return isLostPrefabFound;
+    }
+    */
 }
