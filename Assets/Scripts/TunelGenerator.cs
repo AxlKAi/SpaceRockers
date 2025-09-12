@@ -118,10 +118,6 @@ public class TunelGenerator : MonoBehaviour
             float ratio = k / length;
 
             centerPoint = Vector3.Lerp(_wayLinePoints[nearIndex], lookAtPoint, ratio);
-
-            //TODO remove debug
-            //Debug.Log($"Point{nearIndex} coord:{_wayLinePoints[nearIndex]}   point{nearIndex - 1} coord:{lookAtPoint}");
-            //Debug.Log($"For Z={_lastSpawnedZ} ratio = {ratio}  point={centerPoint}");
         }
         else
         {
@@ -130,36 +126,4 @@ public class TunelGenerator : MonoBehaviour
 
         return centerPoint;
     }
-
-    private void FixedUpdate()
-    {
-        //spawn new prefab
-       if( _generatingPoint.transform.position.z - _lastSpawnedZ > _step)
-       { 
-            
-       }
-
-        //catch pref
-        GameObject pref; 
-        // if( TryGetLostPrefab(out pref))
-        {
-
-        }
-    }
-
-    /*
-    private bool TryGetLostPrefab(out GameObject pref)
-    {
-        bool isLostPrefabFound = false;
-        pref = null;
-
-        foreach (var actor in _wayLinePoints)
-        {
-            if (actor.z < _catcherPoint.transform.position.z)
-                pref = actor;
-        }
-
-        return isLostPrefabFound;
-    }
-    */
 }
