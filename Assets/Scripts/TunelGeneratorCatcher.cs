@@ -6,14 +6,13 @@ public class TunelGeneratorCatcher : MonoBehaviour
 {
     public System.Action<TunelWall> OnTunelWallTrigger;
 
-    private void Start()
-    {
-        
-    }
-
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger");
-        OnTunelWallTrigger.Invoke(new TunelWall());
+        TunelWall wall = other.GetComponentInParent<TunelWall>();
+
+        if(wall != null)
+        {
+            OnTunelWallTrigger?.Invoke(wall);
+        }
     }
 }

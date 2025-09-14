@@ -12,7 +12,7 @@ public class TunelGenerator : MonoBehaviour
     [SerializeField]
     private float _step = 100f;
     [SerializeField]
-    private GameObject _gatePrefab;
+    private TunelWall _gatePrefab;
     [SerializeField]
     private LineRendererSmoother _wayLine;
     [SerializeField]
@@ -20,14 +20,14 @@ public class TunelGenerator : MonoBehaviour
 
     private float _lastSpawnedZ;
     private Vector3[] _wayLinePoints;
-    private ObjectPool<GameObject> _pool;
+    private ObjectPool<TunelWall> _pool;
 
     private void Start()
     {
-        _pool = new ObjectPool<GameObject>(
+        _pool = new ObjectPool<TunelWall>(
             createFunc: () => Instantiate(_gatePrefab), 
-            actionOnGet: (obj) => obj.SetActive(true), 
-            actionOnRelease: (obj) => obj.SetActive(false), 
+            actionOnGet: (obj) => obj.transform.gameObject.SetActive(true), 
+            actionOnRelease: (obj) => obj.transform.gameObject.SetActive(false), 
             actionOnDestroy: (obj) => Destroy(obj), 
             collectionCheck: false,
             defaultCapacity: 45, 
@@ -72,7 +72,7 @@ public class TunelGenerator : MonoBehaviour
     private void StartTunel()
     {
         int numPositions = _wayLine.Line.positionCount;
-        Vector3 lookAtPoint;
+        
         _wayLinePoints = new Vector3[numPositions];
         _wayLine.Line.GetPositions(_wayLinePoints);
 
@@ -80,15 +80,20 @@ public class TunelGenerator : MonoBehaviour
 
         while (_lastSpawnedZ <= _generatingPoint.transform.position.z)
         {
-            Vector3 spawnedPosition = GetWayLinePoint(out lookAtPoint);
-
-            var actor = _pool.Get();
-            actor.transform.position = spawnedPosition;
-            actor.transform.LookAt(lookAtPoint);
-            actor.transform.parent = _parentTunelActor.transform;
-
+            SpawnWallPrefab();
             _lastSpawnedZ += _step;
         }
+    }
+
+    private void SpawnWallPrefab()
+    {
+        Vector3 lookAtPoint;
+        Vector3 spawnedPosition = GetWayLinePoint(out lookAtPoint);
+
+        var actor = _pool.Get();
+        actor.transform.position = spawnedPosition;
+        actor.transform.LookAt(lookAtPoint);
+        actor.transform.parent = _parentTunelActor.transform;
     }
 
     private Vector3 GetWayLinePoint(out Vector3 lookAtPoint)
@@ -133,6 +138,15 @@ public class TunelGenerator : MonoBehaviour
 
     private void CatchGatePrefab(TunelWall wall)
     {
-        Debug.Log("Generator method");
+        _pool.Release(wall);
+    }
+
+    private void FixedUpdate()
+    {
+        if(_generatingPoint.transform.position.z - _lastSpawnedZ > _step)
+        {
+            SpawnWallPrefab();
+            _lastSpawnedZ += _step;
+        }
     }
 }
