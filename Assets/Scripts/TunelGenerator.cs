@@ -14,12 +14,11 @@ public class TunelGenerator : MonoBehaviour
     [SerializeField]
     private TunelWall _gatePrefab;
     [SerializeField]
-    private LineRendererSmoother _wayLine;
+    private TunelPathLine _wayLine;
     [SerializeField]
     private GameObject _parentTunelActor;
 
     private float _lastSpawnedZ;
-    private Vector3[] _wayLinePoints;
     private ObjectPool<TunelWall> _pool;
 
     private void Start()
@@ -71,11 +70,6 @@ public class TunelGenerator : MonoBehaviour
 
     private void StartTunel()
     {
-        int numPositions = _wayLine.Line.positionCount;
-        
-        _wayLinePoints = new Vector3[numPositions];
-        _wayLine.Line.GetPositions(_wayLinePoints);
-
         _lastSpawnedZ = _catcherPoint.transform.position.z;
 
         while (_lastSpawnedZ <= _generatingPoint.transform.position.z)
@@ -88,52 +82,12 @@ public class TunelGenerator : MonoBehaviour
     private void SpawnWallPrefab()
     {
         Vector3 lookAtPoint;
-        Vector3 spawnedPosition = GetWayLinePoint(out lookAtPoint);
+        Vector3 spawnedPosition = _wayLine.GetWayLinePointAndLookAt(_lastSpawnedZ ,out lookAtPoint);
 
         var actor = _pool.Get();
         actor.transform.position = spawnedPosition;
         actor.transform.LookAt(lookAtPoint);
         actor.transform.parent = _parentTunelActor.transform;
-    }
-
-    private Vector3 GetWayLinePoint(out Vector3 lookAtPoint)
-    {
-        lookAtPoint = Vector3.zero;
-
-        if (_wayLinePoints == null)
-        {
-            Debug.LogError("No points in _wayLinePoints");
-            return _generatingPoint.transform.position;
-        }
-
-        Vector3 centerPoint = Vector3.zero;
-        int nearIndex = 0;
-
-        for(int i = 0; i<_wayLinePoints.Length; i++)        
-        {
-            if(_wayLinePoints[i].z > _lastSpawnedZ)
-            {
-                nearIndex = i;
-                break;
-            }
-        }
-
-        if(nearIndex > 0)
-        {
-            lookAtPoint = _wayLinePoints[nearIndex - 1];
-
-            float length = _wayLinePoints[nearIndex].z - lookAtPoint.z;
-            float k = _wayLinePoints[nearIndex].z - _lastSpawnedZ;
-            float ratio = k / length;
-
-            centerPoint = Vector3.Lerp(_wayLinePoints[nearIndex], lookAtPoint, ratio);
-        }
-        else
-        {
-            centerPoint = _wayLinePoints[0];
-        }
-
-        return centerPoint;
     }
 
     private void CatchGatePrefab(TunelWall wall)
