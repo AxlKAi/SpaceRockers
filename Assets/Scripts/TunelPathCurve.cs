@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TunelPathLine : MonoBehaviour
+public class TunelPathCurve : MonoBehaviour
 {
-    //TODO сделать три метода, 
-    //GetWayLinePoint один возвращает координату по параметру Z
-    //GetWayLineLookAt второй LookAt координату по параметру Z
-    //GetWayLinePointAndLookAt третий оба значения
-
     [SerializeField]
     private LineRendererSmoother _wayLine;
     private Vector3[] _wayLinePoints;
@@ -145,11 +140,4 @@ public class TunelPathLine : MonoBehaviour
 
         return lookAtPoint;
     }
-
-    /*
-    public Vector3 GetWayLineAngle(float zCoordinate)
-    {
-        return
-    }
-    */
 }

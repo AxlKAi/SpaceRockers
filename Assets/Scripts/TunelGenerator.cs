@@ -14,7 +14,7 @@ public class TunelGenerator : MonoBehaviour
     [SerializeField]
     private TunelWall _gatePrefab;
     [SerializeField]
-    private TunelPathLine _wayLine;
+    private TunelPathCurve _wayLine;
     [SerializeField]
     private GameObject _parentTunelActor;
 

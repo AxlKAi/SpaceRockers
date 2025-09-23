@@ -7,7 +7,7 @@ public class TunelPathLineTest : MonoBehaviour
     // TODO delete this class
 
     [SerializeField]
-    private TunelPathLine _line;
+    private TunelPathCurve _line;
     [SerializeField]
     private Vector3 _displacement;
 
