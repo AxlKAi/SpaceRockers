@@ -6,8 +6,6 @@ using UnityEngine.Pool;
 
 public class NoteSpawner : MonoBehaviour
 {
-    //TODO добавить рандом появления
-
     [EventID]
     public string eventID;
 
@@ -16,24 +14,40 @@ public class NoteSpawner : MonoBehaviour
     [SerializeField]
     private GameObject _pointToArrived;
     [SerializeField]
+    private GameObject _destroyPoint;
+    [SerializeField]
     float randomX = 1.5f;
     [SerializeField]
     float randomY = 1.5f;
 
     private TunelPathCurve _pathCurve;
     private Player _player;
+    private MusicSheet _musicSheet;
 
+    private int _defaultNotesCapacity = 15;
+    private int _maxNotesCapacity = 15;
     private ObjectPool<Note> _notes;
 
     public TunelPathCurve PathCurve
     {
         get => _pathCurve;
-        set => _pathCurve = value;
     }
+
     public Player Player
     {
         get => _player;
-        set => _player = value;
+    }
+
+    public MusicSheet MusicSheet
+    {
+        get => _musicSheet;
+    }
+
+    public void Initialize(Player player, MusicSheet musicSheet, TunelPathCurve curve)
+    {
+        _player = player;
+        _musicSheet = musicSheet;
+        _pathCurve = curve;
     }
 
     private void Awake()
@@ -45,12 +59,12 @@ public class NoteSpawner : MonoBehaviour
     {
         _notes = new ObjectPool<Note>(
             createFunc: CreateNote,
-            actionOnGet: (obj) => obj.transform.gameObject.SetActive(true),
+            actionOnGet: GetNote,
             actionOnRelease: (obj) => obj.transform.gameObject.SetActive(false),
             actionOnDestroy: (obj) => Destroy(obj),
             collectionCheck: false,
-            defaultCapacity: 45,
-            maxSize: 50);
+            defaultCapacity: _defaultNotesCapacity,
+            maxSize: _maxNotesCapacity);
     }
 
     private Note CreateNote()
@@ -60,8 +74,17 @@ public class NoteSpawner : MonoBehaviour
         note.Player = _player;
         note.Spawner = this as NoteSpawner;
         note.PathCurve = _pathCurve;
+        note.RemoveNote += RemoveNote;
+        note.EndPosition = _destroyPoint;
 
         return note;    
+    }
+
+    private void GetNote(Note obj)
+    {
+        obj.gameObject.SetActive(true);
+        obj.transform.localScale = Vector3.one;
+        obj.ResetTimers();
     }
 
     private void OnEventAction(KoreographyEvent evt)
@@ -72,22 +95,16 @@ public class NoteSpawner : MonoBehaviour
         var newObject = _notes.Get();
 
         newObject.gameObject.SetActive(true);
+        
         newObject.StartPosition = transform.position;
-
         float displacementDeltaX = Random.Range(-randomX, +randomX);
         float displacementDeltaY = Random.Range(-randomY, +randomY);
-        Vector3 displacement = new Vector3(transform.localPosition.x+ displacementDeltaX, transform.localPosition.y+ displacementDeltaY, 0);
+        Vector3 displacement = new(transform.localPosition.x+ displacementDeltaX, transform.localPosition.y+ displacementDeltaY, 0);
         newObject.Displacement = displacement;
-
-        newObject.RemoveNote += RemoveNote;
     }
 
     private void RemoveNote(Note note)
     {
         _notes.Release(note);
     }
-
-
-
-
 }

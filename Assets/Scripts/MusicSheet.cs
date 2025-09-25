@@ -33,23 +33,15 @@ public class MusicSheet : MonoBehaviour
     {
         StartCoroutine(StartKoreographer());
 
-        _spawnerLeft.PathCurve = _pathCurve;
-        _spawnerRight.PathCurve = _pathCurve;
-        _spawnerMiddle.PathCurve = _pathCurve;
-
-        _spawnerLeft.Player = _player;
-        _spawnerRight.Player = _player;
-        _spawnerMiddle.Player = _player;
+        _spawnerLeft.Initialize(_player, this, _pathCurve);
+        _spawnerRight.Initialize(_player, this, _pathCurve);
+        _spawnerMiddle.Initialize(_player, this, _pathCurve);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        Vector3 newPosition = transform.position;
-        newPosition.z = _player.transform.position.z;
-        transform.position = newPosition;
-
-
+        transform.position = _pathCurve.GetWayLinePoint(_player.transform.position.z);
     }
 
     private IEnumerator StartKoreographer()

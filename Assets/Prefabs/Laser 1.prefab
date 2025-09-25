@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedAfterSkipping: 5
   _scaleDecreasAfterSkipping: {x: 0.5, y: 0.5, z: 0.5}
+  SpawnerName: 
+  Index: 0
 --- !u!199 &2099754919075440435
 ParticleSystemRenderer:
   serializedVersion: 6

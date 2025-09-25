@@ -5,22 +5,21 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     [SerializeField]
-    private float _speedAfterSkipping = 1f;
-    [SerializeField]
-    private Vector3 _scaleDecreasAfterSkipping = new Vector3(.03f, .03f, .03f);
+    private Vector3 _scaleDecreasAfterSkipping = new (.03f, .03f, .03f);
 
     private TunelPathCurve _pathCurve;
     private Vector3 _displacement;
 
     private NoteSpawner _spawner;
     private Vector3 _startPosition;
-    private Vector3 _endPosition;
+    private Vector3 _targetPosition; 
+    private GameObject _endPosition;
     private Player _player;
 
     private float _timeToArrived = 3f;
     private float _remaindTimeToArrived;
 
-    private float _timeAfterSkipping = 1f;
+    private float _timeAfterSkipping = .5f;
     private float _remaindTimeAfterSkipping;
 
     private bool _isBeforArrived = true;
@@ -28,17 +27,28 @@ public class Note : MonoBehaviour
 
     public System.Action<Note> RemoveNote;
 
+    //TODO delete it for debuging
+    public string SpawnerName;
+    public int Index;
+
     public Vector3 StartPosition
     {
         get => _startPosition;
         set => _startPosition = value;
     }
 
-    public Vector3 EndPosition
+    public Vector3 TargetPosition
+    {
+        get => _targetPosition;
+        set => _targetPosition = value;
+    }
+
+    public GameObject EndPosition
     {
         get => _endPosition;
         set => _endPosition = value;
     }
+
     public NoteSpawner Spawner
     {
         get => _spawner;
@@ -62,10 +72,16 @@ public class Note : MonoBehaviour
         set => _player = value;
     }
 
-    private void Start()
+    public void ResetTimers()
     {
+        _isBeforArrived = true;
         _remaindTimeToArrived = _timeToArrived;
         _remaindTimeAfterSkipping = _timeAfterSkipping;
+    }
+
+    private void Start()
+    {
+        ResetTimers();
     }
 
     private void Update()
@@ -73,11 +89,11 @@ public class Note : MonoBehaviour
         if (_isBeforArrived)
         {
             _startPosition = _spawner.transform.position;
-            _endPosition = _player.transform.position;
+            _targetPosition = _spawner.MusicSheet.transform.position;
 
             float percentage = _remaindTimeToArrived / _timeToArrived;
             _remaindTimeToArrived -= Time.deltaTime;
-            float interpolatedZ = Mathf.Lerp(_endPosition.z, _startPosition.z, percentage);
+            float interpolatedZ = Mathf.Lerp(_targetPosition.z, _startPosition.z, percentage);
 
             Vector3 newPosition = _pathCurve.GetWayLinePoint(interpolatedZ);
             transform.position = newPosition + _displacement;
@@ -90,12 +106,15 @@ public class Note : MonoBehaviour
             if (_remaindTimeAfterSkipping > 0)
             {
                 _remaindTimeAfterSkipping -= Time.deltaTime;
+                float percentage = _remaindTimeAfterSkipping / _timeAfterSkipping;
 
-                Vector3 newPosition = new Vector3(
-                    transform.position.x,
-                    transform.position.y,
-                    transform.position.z - _speedAfterSkipping * Time.deltaTime
-                );
+                _targetPosition = _spawner.MusicSheet.transform.position + Displacement;
+
+                Vector3 newPosition = Vector3.Lerp(
+                    _endPosition.transform.position + Displacement, 
+                    _targetPosition, 
+                    percentage);
+
                 transform.position = newPosition;
 
                 Vector3 newScale = transform.localScale - _scaleDecreasAfterSkipping * Time.deltaTime;
