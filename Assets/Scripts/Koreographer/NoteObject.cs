@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class NoteObject : MonoBehaviour
 {
+    //TODO это тестовый класс, он не нужен будет на релизе
+
     [SerializeField]
     private float _speedWhileDieng = 1f;
     [SerializeField]

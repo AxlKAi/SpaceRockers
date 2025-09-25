@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class SpawnByEvent : MonoBehaviour
 {
+    //TODO тестовый класс, на релизе не нужен
+
     [SerializeField]
     private NoteObject spawnebleActorPrefab;
 
@@ -58,7 +60,6 @@ public class SpawnByEvent : MonoBehaviour
         return catchedNote;
     }
 
-
     public void CatchNote()
     {
         var note = GetGetNearNote();
@@ -87,18 +88,6 @@ public class SpawnByEvent : MonoBehaviour
     private void Awake()
     {
         Koreographer.Instance.RegisterForEvents(eventID, OnEventAction);
-    }
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-           
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
     }
 
     private void OnEventAction(KoreographyEvent evt)

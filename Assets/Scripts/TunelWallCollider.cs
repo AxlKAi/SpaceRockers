@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TunelWallCollider : MonoBehaviour
 {
+    //TODO ?? по моему этот класс не нужен
+
     [SerializeField]
     private TunelWall _wall;
 

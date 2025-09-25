@@ -8,7 +8,7 @@ public class TunelPathCurve : MonoBehaviour
     private LineRendererSmoother _wayLine;
     private Vector3[] _wayLinePoints;
 
-    private void Start()
+    private void Awake()
     {
         if (_wayLine == null)
         {
@@ -61,6 +61,7 @@ public class TunelPathCurve : MonoBehaviour
         return centerPoint;
     }
 
+    // TODO похоже этот метод показывает наоборот
     public Vector3 GetWayLinePointAndLookAt(float zCoordinate, out Vector3 lookAtPoint) 
     {
         Vector3 centerPoint = Vector3.zero;

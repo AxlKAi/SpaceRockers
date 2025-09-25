@@ -26,7 +26,5 @@ public class TunelPathLineTest : MonoBehaviour
         Vector3 newPosition = _line.GetWayLinePointAndLookAt(transform.position.z, out lookAt);
         transform.LookAt(lookAt + _displacement);
         transform.position = newPosition + _displacement;
-
-        Debug.Log("LookAt " + lookAt);
     }
 }
