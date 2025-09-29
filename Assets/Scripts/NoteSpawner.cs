@@ -50,7 +50,7 @@ public class NoteSpawner : MonoBehaviour
         _pathCurve = curve;
     }
 
-    public float GetNearNoteDistance()
+    public float CatchNearNote()
     {
         float distance = _musicSheet.PoorNoteDistance;
 
@@ -71,8 +71,12 @@ public class NoteSpawner : MonoBehaviour
                 }
             }
 
-            if (note != null)
+            if (note != null && distance < _musicSheet.PoorNoteDistance)
+            {
                 note.Caught();
+
+                Debug.Log($"Left note catched at time {Time.realtimeSinceStartup}");
+            }
         }
 
         return distance;

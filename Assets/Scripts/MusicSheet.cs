@@ -81,7 +81,7 @@ public class MusicSheet : MonoBehaviour
 
     private void CatchRightNote()
     {
-        int reward = GetPlayerRewarPoints(_spawnerRight.GetNearNoteDistance());
+        int reward = GetPlayerRewarPoints(_spawnerRight.CatchNearNote());
 
         if (reward > 0)
             _player.PlayerReward(reward);
@@ -89,7 +89,7 @@ public class MusicSheet : MonoBehaviour
 
     private void CatchLeftNote()
     {
-        int reward = GetPlayerRewarPoints(_spawnerLeft.GetNearNoteDistance());
+        int reward = GetPlayerRewarPoints(_spawnerLeft.CatchNearNote());
 
         if (reward > 0)
             _player.PlayerReward(reward);
@@ -97,7 +97,7 @@ public class MusicSheet : MonoBehaviour
 
     private void CatchMiddleNote()
     {
-        int reward = GetPlayerRewarPoints(_spawnerMiddle.GetNearNoteDistance());
+        int reward = GetPlayerRewarPoints(_spawnerMiddle.CatchNearNote());
 
         if (reward > 0)
             _player.PlayerReward(reward);

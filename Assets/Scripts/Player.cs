@@ -34,6 +34,10 @@ public class Player : MonoBehaviour
         _playerInput = gameObject.AddComponent<PlayerInput>();
         _engine.Initialize(_rigidbody, _playerInput);
         _constantForce = GetComponent<ConstantForce>();
+
+        _playerInput.CatchLeftPressed += KeyPressTest;
+        _playerInput.CatchMiddlePressed += KeyPressTest;
+        _playerInput.CatchRightPressed += KeyPressTest;
     }
 
     private void Update()
@@ -55,5 +59,12 @@ public class Player : MonoBehaviour
 
             _camera.transform.position = cameraPosition;
         }
+    }
+
+    private void KeyPressTest()
+    {
+        //TODO delete this method
+
+        Debug.Log($"Left catch pressed at time {Time.realtimeSinceStartup}");
     }
 }

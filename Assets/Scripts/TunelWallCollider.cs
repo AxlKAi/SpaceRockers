@@ -24,11 +24,11 @@ public class TunelWallCollider : MonoBehaviour
 
         if(wall != null)
         {
-            Debug.Log("trigger wall");
+            
         }
         else
         {
-            Debug.Log("trigger");
+           
         }
         //Destroy(other.gameObject);
     }
