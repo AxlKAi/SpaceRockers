@@ -50,6 +50,34 @@ public class NoteSpawner : MonoBehaviour
         _pathCurve = curve;
     }
 
+    public float GetNearNoteDistance()
+    {
+        float distance = _musicSheet.PoorNoteDistance;
+
+        foreach (Transform child in transform)
+        {
+            Note note;
+
+            if (child.TryGetComponent<Note>(out note))
+            {
+                if (child.gameObject.activeSelf)
+                {
+                    float delta = child.position.z - _musicSheet.transform.position.z;
+
+                    if (delta < distance)
+                    {
+                        distance = delta;
+                    }
+                }
+            }
+
+            if (note != null)
+                note.Caught();
+        }
+
+        return distance;
+    }
+
     private void Awake()
     {
         Koreographer.Instance.RegisterForEvents(eventID, OnEventAction);

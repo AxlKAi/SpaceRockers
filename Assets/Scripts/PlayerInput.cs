@@ -9,6 +9,9 @@ public class PlayerInput : MonoBehaviour
 
     public Action CatchPressed;  // события на нажатие клавиши
     public Action CatchReleased;
+    public Action CatchLeftPressed;
+    public Action CatchRightPressed;
+    public Action CatchMiddlePressed;
 
     public Vector2 Controls => _moveInput;
 
@@ -21,5 +24,14 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
             CatchReleased?.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.I))
+            CatchLeftPressed?.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.O))
+            CatchMiddlePressed?.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.P))
+            CatchRightPressed?.Invoke();
     }
 }

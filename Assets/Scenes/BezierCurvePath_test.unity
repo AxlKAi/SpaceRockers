@@ -537,6 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db06d5e26c4c99047924e2e6284d15d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxNotedistance: 1000
   eventID: RedPreload
   _spawnebleActorPrefab: {fileID: 1966369271882932054, guid: 0f21dd50014c64444a1f3ea29b6556f0,
     type: 3}
@@ -640,8 +641,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db06d5e26c4c99047924e2e6284d15d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxNotedistance: 1000
   eventID: Yellow_preload
-  _spawnebleActorPrefab: {fileID: 1966369271882932054, guid: 0f21dd50014c64444a1f3ea29b6556f0,
+  _spawnebleActorPrefab: {fileID: 1966369271882932054, guid: 09c0a91dcd9e61041902193282c9d2ba,
     type: 3}
   _pointToArrived: {fileID: 1404786794}
   _destroyPoint: {fileID: 61540427}
@@ -775,8 +777,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db06d5e26c4c99047924e2e6284d15d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxNotedistance: 1000
   eventID: White_preload
-  _spawnebleActorPrefab: {fileID: 1966369271882932054, guid: 0f21dd50014c64444a1f3ea29b6556f0,
+  _spawnebleActorPrefab: {fileID: 1966369271882932054, guid: 74b65acdaf9f8244893698737e63deda,
     type: 3}
   _pointToArrived: {fileID: 1404786794}
   _destroyPoint: {fileID: 61540427}

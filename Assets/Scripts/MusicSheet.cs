@@ -25,10 +25,24 @@ public class MusicSheet : MonoBehaviour
     [SerializeField]
     private NoteSpawner _spawnerMiddle;
 
+    [SerializeField]
+    private float _poorNoteDistance = 10f;
+    [SerializeField]
+    private float _severalNoteDistance = 5f;
+    [SerializeField]
+    private float _goodDistance = 1f;
+
+    [SerializeField]
+    private int _poorReward = 1;
+    [SerializeField]
+    private int _severalReward = 2;
+    [SerializeField]
+    private int _goodReward = 3;
+
     private float _startPlayDelay = 2f;
 
+    public float PoorNoteDistance { get => _poorNoteDistance; }
 
-    // Start is called before the first frame update
     private void Start()
     {
         StartCoroutine(StartKoreographer());
@@ -36,9 +50,12 @@ public class MusicSheet : MonoBehaviour
         _spawnerLeft.Initialize(_player, this, _pathCurve);
         _spawnerRight.Initialize(_player, this, _pathCurve);
         _spawnerMiddle.Initialize(_player, this, _pathCurve);
+
+        _player.PlayerInput.CatchLeftPressed += CatchLeftNote;
+        _player.PlayerInput.CatchRightPressed += CatchRightNote;
+        _player.PlayerInput.CatchMiddlePressed += CatchMiddleNote;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         transform.position = _pathCurve.GetWayLinePoint(_player.transform.position.z);
@@ -60,5 +77,49 @@ public class MusicSheet : MonoBehaviour
         {
             Debug.LogError("Koreography or SimpleMusicPlayer not assigned!");
         }
+    }
+
+    private void CatchRightNote()
+    {
+        int reward = GetPlayerRewarPoints(_spawnerRight.GetNearNoteDistance());
+
+        if (reward > 0)
+            _player.PlayerReward(reward);
+    }
+
+    private void CatchLeftNote()
+    {
+        int reward = GetPlayerRewarPoints(_spawnerLeft.GetNearNoteDistance());
+
+        if (reward > 0)
+            _player.PlayerReward(reward);
+    }
+
+    private void CatchMiddleNote()
+    {
+        int reward = GetPlayerRewarPoints(_spawnerMiddle.GetNearNoteDistance());
+
+        if (reward > 0)
+            _player.PlayerReward(reward);
+    }
+
+    private int GetPlayerRewarPoints(float distance)
+    {
+        int reward = 0;
+
+        if (Mathf.Abs(distance) < _goodDistance)
+        {
+            reward = _goodReward;
+        }
+        else if (distance < _severalNoteDistance)
+        {
+            reward = _severalReward;
+        }
+        else if (distance < _poorReward)
+        {
+            reward = _poorReward;
+        }
+
+        return reward;
     }
 }

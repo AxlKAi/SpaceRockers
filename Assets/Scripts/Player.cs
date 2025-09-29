@@ -12,10 +12,20 @@ public class Player : MonoBehaviour
 
     private Transform _transform;
     private Rigidbody _rigidbody;
-    private PlayerInput _playerInput;
     private ConstantForce _constantForce;
+    private PlayerInput _playerInput;
 
     private Vector3 _cameraSlideVelocity = Vector3.zero;
+
+    public PlayerInput PlayerInput
+    {
+        get => _playerInput;
+    }
+
+    public void PlayerReward(int points)
+    {
+        Debug.Log("player reward " + points);
+    }
 
     private void Awake()
     {

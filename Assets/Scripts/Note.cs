@@ -75,8 +75,14 @@ public class Note : MonoBehaviour
     public void ResetTimers()
     {
         _isBeforArrived = true;
+        _isCatched = false;
         _remaindTimeToArrived = _timeToArrived;
         _remaindTimeAfterSkipping = _timeAfterSkipping;
+    }
+
+    public void Caught()
+    {
+        _isCatched = true;
     }
 
     private void Start()
@@ -101,6 +107,32 @@ public class Note : MonoBehaviour
             if (_remaindTimeToArrived < 0)
                 _isBeforArrived = false;
         } 
+        else if (_isCatched)
+        {
+            //TODO catch note animation
+
+            if (_remaindTimeAfterSkipping > 0)
+            {
+                _remaindTimeAfterSkipping -= Time.deltaTime;
+                float percentage = _remaindTimeAfterSkipping / _timeAfterSkipping;
+                
+                _targetPosition = _spawner.MusicSheet.transform.position + _displacement;
+
+                Vector3 newPosition = Vector3.Lerp(
+                    _player.transform.position,
+                    _targetPosition,
+                    percentage);
+
+                transform.position = newPosition;
+
+                Vector3 newScale = transform.localScale - _scaleDecreasAfterSkipping * Time.deltaTime;
+                transform.localScale = newScale;
+            }
+            else
+            {
+                RemoveNote?.Invoke(this);
+            }
+        }
         else
         {
             if (_remaindTimeAfterSkipping > 0)
