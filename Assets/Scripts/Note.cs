@@ -72,6 +72,11 @@ public class Note : MonoBehaviour
         set => _player = value;
     }
 
+    public bool IsCathed
+    {
+        get => _isCatched;
+    }
+
     public void ResetTimers()
     {
         _isBeforArrived = true;

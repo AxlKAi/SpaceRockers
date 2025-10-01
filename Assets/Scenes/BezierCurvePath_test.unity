@@ -537,7 +537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db06d5e26c4c99047924e2e6284d15d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxNotedistance: 1000
   eventID: RedPreload
   _spawnebleActorPrefab: {fileID: 1966369271882932054, guid: 0f21dd50014c64444a1f3ea29b6556f0,
     type: 3}
@@ -628,7 +627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &198789552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,7 +640,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db06d5e26c4c99047924e2e6284d15d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxNotedistance: 1000
   eventID: Yellow_preload
   _spawnebleActorPrefab: {fileID: 1966369271882932054, guid: 09c0a91dcd9e61041902193282c9d2ba,
     type: 3}
@@ -764,7 +762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &387388808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,7 +775,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db06d5e26c4c99047924e2e6284d15d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxNotedistance: 1000
   eventID: White_preload
   _spawnebleActorPrefab: {fileID: 1966369271882932054, guid: 74b65acdaf9f8244893698737e63deda,
     type: 3}
@@ -2311,6 +2308,12 @@ MonoBehaviour:
   _spawnerLeft: {fileID: 182090099}
   _spawnerRight: {fileID: 198789552}
   _spawnerMiddle: {fileID: 387388808}
+  _poorNoteDistance: 10
+  _severalNoteDistance: 5
+  _goodDistance: 1
+  _poorReward: 1
+  _severalReward: 2
+  _goodReward: 3
 --- !u!4 &1404786796
 Transform:
   m_ObjectHideFlags: 0

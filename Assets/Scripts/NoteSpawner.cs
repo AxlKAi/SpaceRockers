@@ -52,6 +52,7 @@ public class NoteSpawner : MonoBehaviour
 
     public float CatchNearNote()
     {
+        Note cathedNote = null;
         float distance = _musicSheet.PoorNoteDistance;
 
         foreach (Transform child in transform)
@@ -60,23 +61,24 @@ public class NoteSpawner : MonoBehaviour
 
             if (child.TryGetComponent<Note>(out note))
             {
-                if (child.gameObject.activeSelf)
+                if (child.gameObject.activeSelf && note.IsCathed == false)
                 {
                     float delta = child.position.z - _musicSheet.transform.position.z;
 
                     if (delta < distance)
                     {
                         distance = delta;
+                        cathedNote = note;
                     }
                 }
             }
+        }
 
-            if (note != null && distance < _musicSheet.PoorNoteDistance)
-            {
-                note.Caught();
+        if (cathedNote != null && distance < _musicSheet.PoorNoteDistance)
+        {
+            cathedNote.Caught();
 
-                Debug.Log($"Left note catched at time {Time.realtimeSinceStartup}");
-            }
+            Debug.Log($"Note catched at time {Time.realtimeSinceStartup} and distance={distance}");
         }
 
         return distance;
@@ -109,7 +111,7 @@ public class NoteSpawner : MonoBehaviour
         note.RemoveNote += RemoveNote;
         note.EndPosition = _destroyPoint;
 
-        return note;    
+        return note;
     }
 
     private void GetNote(Note obj)
@@ -127,11 +129,11 @@ public class NoteSpawner : MonoBehaviour
         var newObject = _notes.Get();
 
         newObject.gameObject.SetActive(true);
-        
+
         newObject.StartPosition = transform.position;
         float displacementDeltaX = Random.Range(-randomX, +randomX);
         float displacementDeltaY = Random.Range(-randomY, +randomY);
-        Vector3 displacement = new(transform.localPosition.x+ displacementDeltaX, transform.localPosition.y+ displacementDeltaY, 0);
+        Vector3 displacement = new(transform.localPosition.x + displacementDeltaX, transform.localPosition.y + displacementDeltaY, 0);
         newObject.Displacement = displacement;
     }
 
