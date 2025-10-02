@@ -64,8 +64,12 @@ public class NoteSpawner : MonoBehaviour
                 if (child.gameObject.activeSelf && note.IsCathed == false)
                 {
                     float delta = child.position.z - _musicSheet.transform.position.z;
+                    
+                    //TODO delete debug
+                    Debug.Log($"note delta={delta}");
+                    Debug.Log($"note old distance={distance}");
 
-                    if (delta < distance)
+                    if (delta < distance && delta > -_musicSheet.GoodDistance)
                     {
                         distance = delta;
                         cathedNote = note;
@@ -74,10 +78,10 @@ public class NoteSpawner : MonoBehaviour
             }
         }
 
-        if (cathedNote != null && distance < _musicSheet.PoorNoteDistance)
+        if (cathedNote != null)
         {
             cathedNote.Caught();
-
+            //TODO delete debug
             Debug.Log($"Note catched at time {Time.realtimeSinceStartup} and distance={distance}");
         }
 

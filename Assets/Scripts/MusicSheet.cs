@@ -42,6 +42,7 @@ public class MusicSheet : MonoBehaviour
     private float _startPlayDelay = 2f;
 
     public float PoorNoteDistance { get => _poorNoteDistance; }
+    public float GoodDistance { get => _goodDistance; }
 
     private void Start()
     {
@@ -85,6 +86,8 @@ public class MusicSheet : MonoBehaviour
 
         if (reward > 0)
             _player.PlayerReward(reward);
+        else
+            Debug.Log("Right note missed");
     }
 
     private void CatchLeftNote()
@@ -93,6 +96,8 @@ public class MusicSheet : MonoBehaviour
 
         if (reward > 0)
             _player.PlayerReward(reward);
+        else
+            Debug.Log("Left note missed");
     }
 
     private void CatchMiddleNote()
@@ -101,6 +106,8 @@ public class MusicSheet : MonoBehaviour
 
         if (reward > 0)
             _player.PlayerReward(reward);
+        else
+            Debug.Log("Middle note missed");
     }
 
     private int GetPlayerRewarPoints(float distance)
@@ -115,7 +122,7 @@ public class MusicSheet : MonoBehaviour
         {
             reward = _severalReward;
         }
-        else if (distance < _poorReward)
+        else if (distance < _poorNoteDistance)
         {
             reward = _poorReward;
         }

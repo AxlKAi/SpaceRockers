@@ -2308,7 +2308,7 @@ MonoBehaviour:
   _spawnerLeft: {fileID: 182090099}
   _spawnerRight: {fileID: 198789552}
   _spawnerMiddle: {fileID: 387388808}
-  _poorNoteDistance: 10
+  _poorNoteDistance: 11
   _severalNoteDistance: 5
   _goodDistance: 1
   _poorReward: 1
