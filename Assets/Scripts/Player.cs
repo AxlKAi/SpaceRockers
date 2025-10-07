@@ -22,9 +22,14 @@ public class Player : MonoBehaviour
         get => _playerInput;
     }
 
-    public void PlayerReward(int points)
+    public void OnPlayerReward(int points)
     {
         Debug.Log("player reward " + points);
+    }
+
+    public void OnPlayerMissed()
+    {
+        Debug.Log("Player missed");
     }
 
     private void Awake()
