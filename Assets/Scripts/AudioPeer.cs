@@ -18,8 +18,6 @@ public class AudioPeer : MonoBehaviour
     public float[] Samples { get { return _samples; } }
     public float[] FrequiencyBand { get { return _frequiencyBand; } }
 
-    public int FrequiencyBandCountGetter { get { return FrequiencyBandCount; } }
-
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();

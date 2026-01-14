@@ -16,7 +16,7 @@ public class AudioPolyline : MonoBehaviour
     [SerializeField]
     protected float _amplitudeDropLength = .3f;
     [SerializeField]
-    protected float _moveSpeed = -2;
+    protected float _moveSpeed = -2f;
     [SerializeField]
     protected bool _amplitudeDrop = false;
 
