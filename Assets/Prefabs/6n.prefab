@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxGlowLevel: 2
-  MinGlowLevel: 1
+  MinGlowLevel: 0.6
   GlowLevelChangePeriod: 0.8
   _upperLinesObject: {fileID: 2736361104968915216}
   _lowerLinesObject: {fileID: 7018833246814828067}
