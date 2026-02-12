@@ -6,28 +6,26 @@ public class Engine : MonoBehaviour
 {
     [SerializeField] private float _strafeForce;
     [SerializeField] private float _forwardSpeed;
-
+    
     [Header("Настройки крена")]
-    [SerializeField] private float _maxRollTorque = 1f;      // Максимальная сила крена
-    //TODO delete
-    [SerializeField] private float _rollSensitivity = 1f;     // Чувствительность управления
-    [SerializeField] private float _stabilityTorque = 20f;     // Сила возврата в нейтраль
-
-    [Header("Пределы")]
-    [SerializeField] private float maxRollAngle = 60f;       // Максимальный угол
+    [SerializeField] private float _maxRollTorque = 3f;      // Максимальная сила крена
+    [SerializeField] private float _stabilityTorque = 2f;     // Сила возврата в нейтраль
+    [SerializeField] private float _maxRollAngle = 60f;       // Максимальный угол
 
     private Rigidbody _targetBody;
     private Transform _transform;
     private PlayerInput _playerInput;
 
     private Vector3 _force;
-    private float _rotateInput = 0;
+    
+    //TODO delete
+    //private float _rotateInput = 0;
 
     //TODO добавить логику поворота корабля
-    private Vector3 _rotationAngle;
+    private float _rotationAngle;
 
     public Vector3 Force => _force;
-    public Vector3 RotationAngle => _rotationAngle;
+    public float RotationAngle => _rotationAngle;
 
     public void Initialize(Rigidbody targetBody, PlayerInput playerInput)
     {
@@ -44,35 +42,27 @@ public class Engine : MonoBehaviour
         _force = new Vector3(
             _playerInput.Controls.x * _strafeForce,
             _playerInput.Controls.y * _strafeForce, 
-            _forwardSpeed);            
+            _forwardSpeed);
 
-        if(_playerInput.Controls.x < -0.01f)
+
+        float playerInputX = _playerInput.Controls.x;
+
+        if (playerInputX < -0.01f)
         {
-            _rotateInput = Mathf.MoveTowards(_rotateInput, -1f, _rollSensitivity * Time.fixedDeltaTime);
-            _rotationAngle = _targetBody.transform.forward * _rotateInput * _maxRollTorque;
-
-            Debug.Log($"Поворот налево угол={_rotationAngle}");
-        } 
-        else if (_playerInput.Controls.x > 0.01f)
+            _rotationAngle = Mathf.MoveTowards(_rotationAngle, _maxRollAngle, _maxRollTorque * Time.fixedDeltaTime);
+        }
+        else if (playerInputX > 0.01f)
         {
-            _rotateInput = Mathf.MoveTowards(_rotateInput, 1f, _rollSensitivity * Time.fixedDeltaTime);
-            _rotationAngle = _targetBody.transform.forward * _rotateInput * _maxRollTorque;
-
-            Debug.Log($"Поворот направо угол={_rotationAngle}");
+            _rotationAngle = Mathf.MoveTowards(_rotationAngle, -_maxRollAngle, _maxRollTorque * Time.fixedDeltaTime);
         }
         else
         {
-            _rotateInput = Mathf.MoveTowards(_rotateInput, 0f, _stabilityTorque * 0.5f * Time.fixedDeltaTime);
-
-            angle = Mathf.MoveTowards(_rotateInput, 0f, _stabilityTorque * 0.5f * Time.fixedDeltaTime);
-            _rotationAngle = _targetBody.transform.forward * angle * _maxRollTorque;
-
-            Debug.Log($"Возвращаюсь угол={_rotationAngle}");
+            _rotationAngle = Mathf.MoveTowards(_rotationAngle, 0f, _stabilityTorque * Time.fixedDeltaTime);
         }
 
-        // _targetBody.AddTorque(_rotationAngle, ForceMode.Force);
+        _targetBody.transform.eulerAngles = new Vector3(0, 0, _rotationAngle);
 
-        _targetBody.transform.localEulerAngles = _rotationAngle;
+        Debug.Log($"Поворот угол={_rotationAngle}");
 
-    }    
+    }
 }
